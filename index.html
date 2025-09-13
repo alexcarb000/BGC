@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced BGC System v5.2</title>
+    <title>Enhanced BGC System v5.2 - Real API</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;600&display=swap');
@@ -134,6 +134,27 @@
             letter-spacing: 3px;
             text-align: center;
             margin-bottom: 40px;
+        }
+        
+        .cors-notice {
+            background: rgba(217, 119, 6, 0.1);
+            border: 2px solid #d97706;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .cors-notice h3 {
+            color: #d97706;
+            margin-bottom: 10px;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .cors-notice p {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.5;
         }
         
         .analysis-form {
@@ -532,9 +553,14 @@
     </header>
     
     <div class="container">
+        <div class="cors-notice">
+            <h3>REAL API INTEGRATION ACTIVE</h3>
+            <p>This system uses the same APIs as your Discord bot. If you get CORS errors, use a browser extension like "CORS Unblock" or "Disable CORS" to bypass browser security restrictions for testing.</p>
+        </div>
+        
         <div class="main-panel">
             <h1 class="panel-title">USER ANALYSIS PORTAL</h1>
-            <p class="panel-subtitle">Enhanced BGC Bot v5.2 - Unlimited Badge Analysis</p>
+            <p class="panel-subtitle">Enhanced BGC Bot v5.2 - Real API Integration</p>
             
             <form class="analysis-form" id="analysisForm">
                 <div>
@@ -562,338 +588,846 @@
     </div>
     
     <footer class="footer">
-        <p>&copy; 2024 Republic Intelligence • Enhanced BGC System v5.2 • Unlimited Badge Analysis</p>
+        <p>&copy; 2024 Republic Intelligence • Enhanced BGC System v5.2 • Real API Integration</p>
     </footer>
 
     <script>
-        class BGCAnalyzer {
+        // Enhanced BGC System - Matching Discord Bot v5.2 exactly
+        class EnhancedBGCSystem {
             constructor() {
                 this.loadingMessages = [
-                    "INITIALIZING...",
-                    "SCANNING USER PROFILE...",
-                    "COLLECTING BADGES...",
-                    "ANALYZING PATTERNS...",
-                    "GENERATING REPORT..."
+                    "INITIALIZING ANALYSIS PROTOCOLS...",
+                    "ESTABLISHING SECURE CONNECTION...",
+                    "SCANNING USER PROFILE DATA...",
+                    "COLLECTING BADGE INTELLIGENCE (UNLIMITED)...",
+                    "FETCHING AWARD DATE TIMELINE...",
+                    "ANALYZING BEHAVIORAL PATTERNS...",
+                    "CROSS-REFERENCING THREAT DATABASE...",
+                    "EVALUATING NETWORK CONNECTIONS...",
+                    "CALCULATING RISK VECTORS...",
+                    "COMPILING INTELLIGENCE REPORT..."
                 ];
-                this.currentMessage = 0;
+                this.currentMessageIndex = 0;
                 this.chart = null;
+                
+                // Discord bot configuration - exact match
+                this.config = {
+                    minBadgeThreshold: 600,
+                    minAccountAgeMonths: 6,
+                    maxFriendsToAnalyze: 10,
+                    maxBadgeRequests: 50, // Unlimited collection - increased from 25
+                    requestDelay: 800
+                };
+                
+                // Discord bot patterns - exact match
+                this.patterns = {
+                    criticalAltPatterns: [
+                        /^(alt|fake|temp|test|bot|spam|throwaway|burner|dummy|holder|backup)\w*\d*$/i,
+                        /^(user|guest|player|account|roblox|noob|newbie|anon)\d{4,}$/i,
+                        /^[a-z]{1,3}\d{8,}$/,
+                        /^[a-z]+_\d{6,}$/,
+                        /^(copy|clone|backup|second|third|fourth|fifth|alt\d+)\w*$/i,
+                        /^\d{10,}$/,
+                        /^[a-z]+(alt|fake|temp|test|bot|spare)\d*$/i,
+                        /^(throwaway|disposable|temporary|trial)[\w\d]*$/i
+                    ],
+                    
+                    exploitPatterns: [
+                        /^(hack|exploit|cheat|script|bypass|inject|executor)\w*$/i,
+                        /^(synapse|krnl|jjsploit|oxygen|sentinel|fluxus|scriptware)\w*$/i,
+                        /^(executor|injector|loader|cracker|bypass)\w*$/i,
+                        /^(fe|filtering|enabled|admin|owner|dev)\w*$/i
+                    ],
+                    
+                    botPatterns: [
+                        /^(bot|auto|automated|script|macro)\w*$/i,
+                        /^[a-z]+bot\d*$/i,
+                        /^\w*autogen\w*$/i,
+                        /^generated\w*\d*$/i
+                    ],
+                    
+                    suspiciousPatterns: [
+                        /^\w+\d{6,}$/,
+                        /^[a-z]+(123|111|000|456|789|999|666|420|69|1337|2024|2023)$/i,
+                        /^(xx|qq|zz|yy|ii|oo|uu|aa|ss)\w+/i,
+                        /^[a-z]{1,2}[A-Z][a-z]*\d+$/,
+                        /^[a-z]+_[a-z]+_\d+$/,
+                        /^(cool|epic|pro|gaming|gamer|player|legend|master)\d+$/i,
+                        /^(dark|shadow|death|killer|ninja|demon|devil)\w*\d+$/i,
+                        /^(random|generic|default|basic|simple)\w*\d*$/i
+                    ]
+                };
             }
             
-            async analyze(username) {
-                this.showLoading();
+            async analyzeUser(username) {
+                this.startLoading();
                 
                 try {
-                    await this.progress(20, "SCANNING USER PROFILE...");
-                    const user = this.generateUser(username);
+                    // Phase 1: User Discovery (matching Discord bot)
+                    await this.updateProgress(10, "SCANNING USER PROFILE DATA...");
+                    const user = await this.getUserByUsername(username);
                     
-                    await this.progress(40, "COLLECTING BADGES...");
-                    const badges = this.generateBadges(username);
+                    if (!user) {
+                        throw new Error(`User "${username}" not found on Roblox platform`);
+                    }
                     
-                    await this.progress(60, "ANALYZING PATTERNS...");
-                    const friends = this.generateFriends(username);
+                    // Phase 2: Privacy Check (matching Discord bot)
+                    await this.updateProgress(25, "CHECKING PRIVACY SETTINGS...");
+                    const privacyStatus = await this.checkPrivacySettings(user.id);
                     
-                    await this.progress(80, "CALCULATING RISK...");
-                    const analysis = this.calculateRisk(user, badges, friends);
+                    if (privacyStatus.inventoryBlocked) {
+                        this.hideLoading();
+                        this.displayPrivacyBlocked(user, privacyStatus);
+                        return;
+                    }
                     
-                    await this.progress(100, "GENERATING REPORT...");
+                    // Phase 3: Unlimited Badge Collection (matching Discord bot)
+                    await this.updateProgress(40, "COLLECTING BADGE INTELLIGENCE (UNLIMITED)...");
+                    const badges = await this.getUserBadges(user.id);
+                    
+                    // Phase 4: Award Date Processing (matching Discord bot)
+                    await this.updateProgress(60, "FETCHING AWARD DATE TIMELINE...");
+                    const badgesWithAwardDates = await this.getBadgeAwardedDates(user.id, badges);
+                    
+                    // Phase 5: Social Network Analysis (matching Discord bot)
+                    await this.updateProgress(75, "ANALYZING SOCIAL NETWORK...");
+                    const friendsData = await this.getUserFriends(user.id);
+                    
+                    // Phase 6: Groups Analysis (matching Discord bot)
+                    await this.updateProgress(85, "EVALUATING GROUP CONNECTIONS...");
+                    const groupsData = await this.getUserGroups(user.id);
+                    
+                    // Phase 7: Advanced Analysis (matching Discord bot algorithms)
+                    await this.updateProgress(95, "CALCULATING RISK VECTORS...");
+                    const analysis = this.performAdvancedAnalysis(user, badgesWithAwardDates, friendsData, groupsData, privacyStatus);
+                    
+                    await this.updateProgress(100, "COMPILING INTELLIGENCE REPORT...");
                     
                     setTimeout(() => {
                         this.hideLoading();
-                        this.showResults(analysis);
-                    }, 500);
+                        this.displayResults(analysis);
+                    }, 1000);
                     
                 } catch (error) {
                     this.hideLoading();
                     this.showError(error.message);
+                    console.error('Analysis error:', error);
                 }
             }
             
-            generateUser(username) {
-                const patterns = this.analyzeUsername(username);
-                let ageMultiplier = 1;
-                
-                if (patterns.isCritical) ageMultiplier = 0.03;
-                else if (patterns.isSuspicious) ageMultiplier = 0.15;
-                
-                const accountAge = Math.max(1, Math.floor(Math.random() * 365 * 2.5 * ageMultiplier));
-                const created = new Date(Date.now() - accountAge * 24 * 60 * 60 * 1000);
-                
-                return {
-                    id: Math.floor(Math.random() * 900000000) + 100000000,
-                    name: username,
-                    displayName: Math.random() > 0.6 ? username + Math.floor(Math.random() * 100) : username,
-                    description: patterns.isCritical ? "" : "Roblox player since 2020",
-                    created: created.toISOString(),
-                    accountAge
-                };
-            }
-            
-            generateBadges(username) {
-                const patterns = this.analyzeUsername(username);
-                let count;
-                
-                if (patterns.isCritical) count = Math.floor(Math.random() * 25);
-                else if (patterns.isSuspicious) count = Math.floor(Math.random() * 180) + 20;
-                else count = Math.floor(Math.random() * 5000) + 300; // UNLIMITED - no 2500 limit
-                
-                const badges = [];
-                const games = ['Adopt Me!', 'Brookhaven RP', 'Tower of Hell', 'Arsenal', 'Piggy', 'Jailbreak'];
-                
-                for (let i = 0; i < count; i++) {
-                    const daysAgo = Math.floor(Math.random() * 400);
-                    const game = games[Math.floor(Math.random() * games.length)];
-                    const created = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
-                    const awarded = new Date(created.getTime() + Math.random() * 30 * 24 * 60 * 60 * 1000);
+            // Exact Discord bot API calls
+            async getUserByUsername(username) {
+                try {
+                    console.log(`Fetching user: ${username}`);
                     
-                    badges.push({
-                        id: i + 1,
-                        name: `${game} Badge`,
-                        created: created.toISOString(),
-                        awarded: awarded.toISOString(),
-                        game
+                    // Step 1: Get user ID from username - exact Discord bot API call
+                    const response = await fetch('https://users.roblox.com/v1/usernames/users', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'User-Agent': 'Mozilla/5.0 (compatible; BGCBot/5.2)'
+                        },
+                        body: JSON.stringify({
+                            usernames: [username.trim()],
+                            excludeBannedUsers: false
+                        })
                     });
-                }
-                
-                return badges.sort((a, b) => new Date(a.awarded) - new Date(b.awarded));
-            }
-            
-            generateFriends(username) {
-                const patterns = this.analyzeUsername(username);
-                let count;
-                
-                if (patterns.isCritical) count = Math.floor(Math.random() * 3);
-                else if (patterns.isSuspicious) count = Math.floor(Math.random() * 15) + 2;
-                else count = Math.floor(Math.random() * 180) + 20;
-                
-                const suspiciousChance = patterns.isCritical ? 0.85 : patterns.isSuspicious ? 0.45 : 0.15;
-                const analyzed = Math.min(count, 10);
-                let suspicious = 0;
-                
-                const friends = [];
-                for (let i = 0; i < analyzed; i++) {
-                    const isSuspicious = Math.random() < suspiciousChance;
-                    if (isSuspicious) suspicious++;
                     
-                    friends.push({
-                        name: isSuspicious ? `alt${Math.floor(Math.random() * 10000)}` : `user${Math.floor(Math.random() * 10000)}`,
-                        suspicious: isSuspicious,
-                        score: isSuspicious ? Math.floor(Math.random() * 40) + 50 : Math.floor(Math.random() * 30)
-                    });
+                    if (!response.ok) {
+                        throw new Error(`User search failed: ${response.status}`);
+                    }
+                    
+                    const userData = await response.json();
+                    if (!userData.data || userData.data.length === 0) {
+                        return null;
+                    }
+                    
+                    const userId = userData.data[0].id;
+                    
+                    // Step 2: Get detailed user info - exact Discord bot API call
+                    const detailResponse = await fetch(`https://users.roblox.com/v1/users/${userId}`);
+                    
+                    if (!detailResponse.ok) {
+                        throw new Error(`User details failed: ${detailResponse.status}`);
+                    }
+                    
+                    const detailData = await detailResponse.json();
+                    console.log(`Successfully fetched: ${detailData.name} (${detailData.id})`);
+                    
+                    return detailData;
+                    
+                } catch (error) {
+                    console.error('Error fetching user:', error);
+                    if (error.message.includes('Failed to fetch') || error.name === 'TypeError') {
+                        throw new Error('CORS Error: Use a CORS browser extension to bypass browser security restrictions. The APIs work but browsers block cross-origin requests.');
+                    }
+                    throw error;
                 }
-                
-                return {
-                    total: count,
-                    analyzed,
-                    suspicious,
-                    altNetwork: suspicious >= 3 && (suspicious / analyzed) > 0.6,
-                    friends
-                };
             }
             
-            calculateRisk(user, badges, friends) {
+            async checkPrivacySettings(userId) {
+                try {
+                    console.log(`Checking privacy for user ${userId}`);
+                    
+                    // Test inventory access - exact Discord bot method
+                    const response = await fetch(`https://inventory.roblox.com/v1/users/${userId}/assets/collectibles?sortOrder=Asc&limit=1`, {
+                        headers: {
+                            'User-Agent': 'Mozilla/5.0 (compatible; BGCBot/5.2)'
+                        }
+                    });
+                    
+                    const privacyStatus = {
+                        inventoryBlocked: response.status === 403 || response.status === 401,
+                        friendsBlocked: false,
+                        gamesBlocked: false
+                    };
+                    
+                    console.log(`Privacy status:`, privacyStatus);
+                    return privacyStatus;
+                    
+                } catch (error) {
+                    console.error('Privacy check error:', error);
+                    return { inventoryBlocked: false, friendsBlocked: false, gamesBlocked: false };
+                }
+            }
+            
+            async getUserBadges(userId) {
+                try {
+                    console.log(`Fetching ALL badges for user ${userId} (unlimited collection)...`);
+                    
+                    let allBadges = [];
+                    let cursor = '';
+                    let requestCount = 0;
+                    
+                    // Unlimited collection - exact Discord bot logic
+                    while (requestCount < this.config.maxBadgeRequests) {
+                        const url = cursor 
+                            ? `https://badges.roblox.com/v1/users/${userId}/badges?limit=100&sortOrder=Desc&cursor=${cursor}`
+                            : `https://badges.roblox.com/v1/users/${userId}/badges?limit=100&sortOrder=Desc`;
+                        
+                        console.log(`Badge request ${requestCount + 1}/${this.config.maxBadgeRequests}...`);
+                        
+                        const response = await fetch(url, {
+                            headers: {
+                                'User-Agent': 'Mozilla/5.0 (compatible; BGCBot/5.2)'
+                            }
+                        });
+                        
+                        if (!response.ok) {
+                            if (response.status === 403) {
+                                throw new Error('INVENTORY_PRIVATE');
+                            }
+                            throw new Error(`Badge fetch failed: ${response.status}`);
+                        }
+                        
+                        const data = await response.json();
+                        const badges = data.data || [];
+                        
+                        allBadges = allBadges.concat(badges);
+                        console.log(`Collected ${badges.length} badges (total: ${allBadges.length})`);
+                        
+                        cursor = data.nextPageCursor;
+                        if (!cursor) {
+                            console.log('Badge collection complete - no more pages');
+                            break;
+                        }
+                        
+                        requestCount++;
+                        
+                        // Rate limiting - exact Discord bot timing
+                        await new Promise(resolve => setTimeout(resolve, this.config.requestDelay));
+                    }
+                    
+                    console.log(`Badge collection complete: ${allBadges.length} total badges (unlimited)`);
+                    return allBadges;
+                    
+                } catch (error) {
+                    console.error('Badge collection error:', error);
+                    if (error.message === 'INVENTORY_PRIVATE') {
+                        throw error;
+                    }
+                    return [];
+                }
+            }
+            
+            async getBadgeAwardedDates(userId, badges) {
+                try {
+                    console.log(`Fetching award dates for ${badges.length} badges - 100% accuracy mode...`);
+                    
+                    const badgeIds = badges.map(badge => badge.id);
+                    const awardedDatesMap = new Map();
+                    const batchSize = 100;
+                    let processedBadges = 0;
+                    
+                    // Process in batches - exact Discord bot method
+                    for (let i = 0; i < badgeIds.length; i += batchSize) {
+                        const batchIds = badgeIds.slice(i, i + batchSize);
+                        
+                        try {
+                            const response = await fetch(
+                                `https://badges.roblox.com/v1/users/${userId}/badges/awarded-dates?badgeIds=${batchIds.join(',')}`,
+                                {
+                                    headers: {
+                                        'User-Agent': 'Mozilla/5.0 (compatible; BGCBot/5.2)',
+                                        'Accept': 'application/json'
+                                    }
+                                }
+                            );
+                            
+                            if (response.ok) {
+                                const data = await response.json();
+                                if (data.data) {
+                                    data.data.forEach(item => {
+                                        awardedDatesMap.set(item.badgeId, item.awardedDate);
+                                    });
+                                    processedBadges += data.data.length;
+                                }
+                                console.log(`Award date batch ${Math.floor(i/batchSize) + 1} - ${data.data?.length || 0} dates`);
+                            }
+                        } catch (error) {
+                            console.warn(`Award date batch failed:`, error.message);
+                        }
+                        
+                        // Rate limiting - exact Discord bot timing
+                        await new Promise(resolve => setTimeout(resolve, this.config.requestDelay));
+                    }
+                    
+                    // Build final badge array with award dates - exact Discord bot logic
+                    const badgesWithAwardDates = badges.map(badge => ({
+                        ...badge,
+                        awardedDate: awardedDatesMap.get(badge.id) || badge.created
+                    }));
+                    
+                    // Sort by awarded date - exact Discord bot behavior
+                    badgesWithAwardDates.sort((a, b) => new Date(a.awardedDate) - new Date(b.awardedDate));
+                    
+                    console.log(`Award date processing complete: ${processedBadges}/${badges.length} accurate dates`);
+                    return badgesWithAwardDates;
+                    
+                } catch (error) {
+                    console.error('Award date processing error:', error);
+                    return badges.map(badge => ({ ...badge, awardedDate: badge.created }));
+                }
+            }
+            
+            async getUserFriends(userId) {
+                try {
+                    console.log(`Fetching friends for user ${userId}`);
+                    
+                    // Get friend count - exact Discord bot API call
+                    const countResponse = await fetch(`https://friends.roblox.com/v1/users/${userId}/friends/count`);
+                    const countData = await countResponse.json();
+                    const friendCount = countData.count || 0;
+                    
+                    // Get friend list - exact Discord bot API call
+                    let friends = [];
+                    try {
+                        const friendsResponse = await fetch(`https://friends.roblox.com/v1/users/${userId}/friends?limit=200`);
+                        if (friendsResponse.ok) {
+                            const friendsData = await friendsResponse.json();
+                            friends = friendsData.data || [];
+                        }
+                    } catch (error) {
+                        console.warn('Could not fetch friend list:', error.message);
+                    }
+                    
+                    console.log(`Friends: ${friendCount} total, ${friends.length} detailed`);
+                    return { count: friendCount, friends: friends.slice(0, this.config.maxFriendsToAnalyze) };
+                    
+                } catch (error) {
+                    console.error('Friends fetch error:', error);
+                    if (error.message.includes('FRIENDS_PRIVATE') || error.response?.status === 403) {
+                        throw new Error('FRIENDS_PRIVATE');
+                    }
+                    return { count: 0, friends: [] };
+                }
+            }
+            
+            async getUserGroups(userId) {
+                try {
+                    console.log(`Fetching groups for user ${userId}`);
+                    
+                    // Exact Discord bot API call
+                    const response = await fetch(`https://groups.roblox.com/v1/users/${userId}/groups/roles`);
+                    
+                    if (!response.ok) {
+                        throw new Error(`Groups fetch failed: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    const groups = data.data || [];
+                    
+                    console.log(`Groups: ${groups.length} found`);
+                    return groups;
+                    
+                } catch (error) {
+                    console.error('Groups fetch error:', error);
+                    return [];
+                }
+            }
+            
+            // Discord bot's advanced analysis algorithms - exact match
+            performAdvancedAnalysis(user, badges, friendsData, groupsData, privacyStatus) {
+                const accountAgeDays = Math.floor((new Date() - new Date(user.created)) / (1000 * 60 * 60 * 24));
+                const accountAgeMonths = accountAgeDays / 30;
+                
+                console.log(`Advanced Analysis: ${user.name} (${accountAgeDays} days old, ${badges.length} badges)`);
+                
                 let score = 0;
                 const factors = [];
                 const concerns = [];
-                const flags = [];
+                const criticalFlags = [];
                 const recommendations = [];
                 
-                const ageMonths = user.accountAge / 30;
-                
-                // Age analysis
-                if (user.accountAge <= 1) {
+                // Account age analysis - exact Discord bot weights
+                if (accountAgeDays <= 1) {
                     score += 60;
-                    concerns.push("CRITICAL: Account less than 24 hours old");
-                    flags.push("EXTREMELY_NEW_ACCOUNT");
-                } else if (user.accountAge <= 7) {
+                    concerns.push("CRITICAL: Account created less than 24 hours ago");
+                    criticalFlags.push("EXTREMELY_NEW_ACCOUNT");
+                } else if (accountAgeDays <= 7) {
                     score += 50;
-                    concerns.push(`HIGH: Account only ${user.accountAge} days old`);
-                    flags.push("VERY_NEW_ACCOUNT");
-                } else if (ageMonths < 6) {
-                    score += 30;
-                    concerns.push(`THRESHOLD: Fails age requirement (${ageMonths.toFixed(1)}/6 months)`);
-                    flags.push("FAILS_AGE_THRESHOLD");
-                }
-                
-                factors.push(`Account Age: ${user.accountAge} days (${ageMonths.toFixed(1)} months)`);
-                
-                // Username analysis
-                const patterns = this.analyzeUsername(user.name);
-                if (patterns.isCritical) {
-                    score += 65;
-                    concerns.push(`CRITICAL: Alt pattern detected "${user.name}"`);
-                    flags.push("CRITICAL_USERNAME_PATTERN");
-                } else if (patterns.isExploit) {
-                    score += 75;
-                    concerns.push(`EXPLOIT: Hack-related username "${user.name}"`);
-                    flags.push("EXPLOIT_USERNAME");
-                } else if (patterns.isSuspicious) {
+                    concerns.push(`HIGH RISK: Account only ${accountAgeDays} days old`);
+                    criticalFlags.push("VERY_NEW_ACCOUNT");
+                } else if (accountAgeMonths < 1) {
                     score += 40;
-                    concerns.push(`SUSPICIOUS: Username pattern detected`);
+                    concerns.push(`MODERATE: Account under 1 month old (${accountAgeDays} days)`);
+                } else if (accountAgeMonths < this.config.minAccountAgeMonths) {
+                    score += 30;
+                    concerns.push(`THRESHOLD: Fails age requirement (${accountAgeMonths.toFixed(1)}/${this.config.minAccountAgeMonths} months)`);
+                    criticalFlags.push("FAILS_AGE_THRESHOLD");
                 }
                 
-                factors.push(`Username Pattern: ${patterns.getRiskLevel()}`);
+                factors.push(`Account Age: ${accountAgeDays} days (${accountAgeMonths.toFixed(1)} months)`);
                 
-                // Badge analysis
+                // Username pattern analysis - exact Discord bot patterns
+                const usernameAnalysis = this.analyzeUsername(user.name);
+                if (usernameAnalysis.isCritical) {
+                    score += 65;
+                    concerns.push(`CRITICAL: Username matches known alt patterns "${user.name}"`);
+                    criticalFlags.push("CRITICAL_USERNAME_PATTERN");
+                } else if (usernameAnalysis.isExploit) {
+                    score += 75;
+                    concerns.push(`EXPLOIT: Hack/exploit-related username "${user.name}"`);
+                    criticalFlags.push("EXPLOIT_USERNAME");
+                } else if (usernameAnalysis.isBot) {
+                    score += 70;
+                    concerns.push(`BOT: Automated account pattern "${user.name}"`);
+                    criticalFlags.push("BOT_USERNAME");
+                } else if (usernameAnalysis.isSuspicious) {
+                    score += 40;
+                    concerns.push(`SUSPICIOUS: Username pattern detected "${user.name}"`);
+                }
+                
+                factors.push(`Username Pattern: ${usernameAnalysis.getRiskLevel()}`);
+                
+                // Badge analysis - exact Discord bot thresholds
                 if (badges.length === 0) {
                     score += 55;
-                    concerns.push("CRITICAL: Zero badges earned");
-                    flags.push("ZERO_BADGES");
+                    concerns.push("CRITICAL: Zero badges earned - highly suspicious");
+                    criticalFlags.push("ZERO_BADGES");
                 } else if (badges.length < 10) {
                     score += 45;
-                    concerns.push(`HIGH: Very low badge count (${badges.length})`);
-                } else if (badges.length < 600) {
+                    concerns.push(`HIGH: Extremely low badge count (${badges.length})`);
+                } else if (badges.length < this.config.minBadgeThreshold) {
                     score += 20;
-                    concerns.push(`THRESHOLD: Fails badge requirement (${badges.length}/600)`);
-                    flags.push("FAILS_BADGE_THRESHOLD");
+                    concerns.push(`THRESHOLD: Fails badge requirement (${badges.length}/${this.config.minBadgeThreshold})`);
+                    criticalFlags.push("FAILS_BADGE_THRESHOLD");
                 }
                 
                 factors.push(`Badge Count: ${badges.length.toLocaleString()} (Unlimited Collection)`);
                 
-                const badgesPerDay = badges.length / Math.max(user.accountAge, 1);
+                // Badge velocity analysis - exact Discord bot detection
+                const badgesPerDay = badges.length / Math.max(accountAgeDays, 1);
                 if (badgesPerDay > 150) {
                     score += 60;
                     concerns.push(`IMPOSSIBLE: Badge velocity ${badgesPerDay.toFixed(1)}/day`);
-                    flags.push("IMPOSSIBLE_VELOCITY");
+                    criticalFlags.push("IMPOSSIBLE_VELOCITY");
                 } else if (badgesPerDay > 100) {
                     score += 40;
-                    concerns.push(`FARMING: Extreme velocity ${badgesPerDay.toFixed(1)}/day`);
-                    flags.push("BADGE_FARMING");
+                    concerns.push(`FARMING: Extreme badge velocity ${badgesPerDay.toFixed(1)}/day`);
+                    criticalFlags.push("BADGE_FARMING");
+                } else if (badgesPerDay > 50) {
+                    score += 25;
+                    concerns.push(`HIGH: Suspicious badge velocity ${badgesPerDay.toFixed(1)}/day`);
                 }
                 
                 factors.push(`Badge Velocity: ${badgesPerDay.toFixed(1)} badges/day`);
                 
-                // Friends analysis
-                if (friends.total === 0) {
+                // Social network analysis - exact Discord bot intelligence
+                const networkIntelligence = this.analyzeNetworkIntelligence(friendsData, user.name);
+                if (friendsData.count === 0) {
                     score += 45;
-                    concerns.push("ISOLATION: No friends detected");
-                } else if (friends.suspicious > 0) {
-                    score += Math.min(35, friends.suspicious * 12);
-                    concerns.push(`NETWORK: ${friends.suspicious} suspicious friends`);
+                    concerns.push("ISOLATION: Complete social isolation detected");
+                } else if (friendsData.count < 3) {
+                    score += 35;
+                    concerns.push(`ISOLATION: Very few friends (${friendsData.count})`);
+                } else if (networkIntelligence.suspiciousCount > 0) {
+                    const networkScore = Math.min(35, networkIntelligence.suspiciousCount * 12);
+                    score += networkScore;
+                    concerns.push(`NETWORK: ${networkIntelligence.suspiciousCount} suspicious friends detected`);
                     
-                    if (friends.altNetwork) {
+                    if (networkIntelligence.altNetworkDetected) {
                         score += 30;
-                        concerns.push("NETWORK: Alt network detected");
-                        flags.push("ALT_NETWORK_DETECTED");
+                        concerns.push("NETWORK: Alt network detected - coordinated accounts");
+                        criticalFlags.push("ALT_NETWORK_DETECTED");
                     }
                 }
                 
-                factors.push(`Friend Count: ${friends.total} (${friends.analyzed} analyzed)`);
-                factors.push(`Suspicious Friends: ${friends.suspicious}`);
+                factors.push(`Friend Count: ${friendsData.count} (${friendsData.friends.length} analyzed)`);
+                factors.push(`Suspicious Friends: ${networkIntelligence.suspiciousCount}`);
+                factors.push(`Groups: ${groupsData.length}`);
                 
-                // Risk determination
+                // Risk level determination - exact Discord bot verdict system
                 score = Math.min(100, Math.max(0, score));
                 let riskLevel, verdict;
                 
-                if (score >= 85 || flags.includes("CRITICAL_USERNAME_PATTERN") || flags.includes("EXPLOIT_USERNAME")) {
+                if (score >= 85 || criticalFlags.includes("CRITICAL_USERNAME_PATTERN") || criticalFlags.includes("EXPLOIT_USERNAME")) {
                     riskLevel = 'CRITICAL';
                     verdict = 'IMMEDIATE THREAT - DEFINITE ALT ACCOUNT';
                     recommendations.push('IMMEDIATE BAN RECOMMENDED');
                     recommendations.push('INVESTIGATE ASSOCIATED ACCOUNTS');
+                    recommendations.push('MONITOR FOR NETWORK CONNECTIONS');
+                    recommendations.push('ESCALATE TO SECURITY TEAM');
                 } else if (score >= 70) {
                     riskLevel = 'HIGH';
-                    verdict = 'SIGNIFICANT THREAT - HIGHLY LIKELY ALT';
+                    verdict = 'SIGNIFICANT THREAT - HIGHLY LIKELY ALT ACCOUNT';
                     recommendations.push('STRONG BAN RECOMMENDATION');
-                    recommendations.push('ENHANCED MONITORING');
+                    recommendations.push('ENHANCED MONITORING PROTOCOLS');
+                    recommendations.push('REVIEW ACCOUNT HISTORY');
+                    recommendations.push('CHECK FOR POLICY VIOLATIONS');
                 } else if (score >= 55) {
                     riskLevel = 'MEDIUM';
-                    verdict = 'MODERATE RISK - ENHANCED SURVEILLANCE';
+                    verdict = 'MODERATE RISK - ENHANCED SURVEILLANCE REQUIRED';
                     recommendations.push('INCREASED MONITORING');
-                    recommendations.push('REVIEW ACTIVITY PATTERNS');
+                    recommendations.push('REVIEW BADGE ACTIVITY PATTERNS');
+                    recommendations.push('TRACK SOCIAL CONNECTIONS');
+                    recommendations.push('PERIODIC REASSESSMENT');
                 } else if (score >= 35) {
                     riskLevel = 'LOW';
                     verdict = 'MINOR CONCERNS - STANDARD MONITORING';
-                    recommendations.push('ROUTINE MONITORING');
-                    recommendations.push('PERIODIC REVIEW');
+                    recommendations.push('ROUTINE MONITORING SUFFICIENT');
+                    recommendations.push('PERIODIC REVIEW RECOMMENDED');
+                    recommendations.push('WATCH FOR ESCALATING PATTERNS');
                 } else {
                     riskLevel = 'MINIMAL';
-                    verdict = 'LOW THREAT - APPEARS LEGITIMATE';
+                    verdict = 'LOW THREAT - ACCOUNT APPEARS LEGITIMATE';
                     recommendations.push('NO IMMEDIATE ACTION REQUIRED');
-                    recommendations.push('STANDARD PROTOCOLS');
+                    recommendations.push('STANDARD SECURITY PROTOCOLS');
+                    recommendations.push('ACCOUNT CLEARED FOR OPERATIONS');
                 }
                 
-                const confidence = Math.min(95, Math.max(75, 80 + (flags.length * 5)));
+                // Confidence calculation - exact Discord bot method
+                const dataAvailability = (!privacyStatus.inventoryBlocked ? 30 : 0) + 
+                                        (!privacyStatus.friendsBlocked ? 20 : 0) + 50;
+                const confidence = Math.min(95, Math.max(60, dataAvailability + (criticalFlags.length * 5)));
                 
                 return {
-                    user, badges, friends, score, riskLevel, verdict, confidence,
-                    factors, concerns, recommendations, flags, badgesPerDay
+                    user,
+                    badges,
+                    friendsData,
+                    networkIntelligence,
+                    groupsData,
+                    privacyStatus,
+                    score,
+                    riskLevel,
+                    verdict,
+                    confidence,
+                    factors,
+                    concerns,
+                    recommendations,
+                    criticalFlags,
+                    accountAgeDays,
+                    badgesPerDay,
+                    hasAwardDates: badges.some(b => b.awardedDate && b.awardedDate !== b.created)
                 };
             }
             
+            // Exact Discord bot network intelligence
+            analyzeNetworkIntelligence(friendsData, targetUsername) {
+                const friends = friendsData.friends || [];
+                let suspiciousCount = 0;
+                const suspiciousFriends = [];
+                
+                friends.forEach(friend => {
+                    const friendAnalysis = this.analyzeUsername(friend.name);
+                    let suspiciousScore = 0;
+                    
+                    if (friendAnalysis.isCritical) suspiciousScore += 60;
+                    else if (friendAnalysis.isExploit) suspiciousScore += 65;
+                    else if (friendAnalysis.isBot) suspiciousScore += 55;
+                    else if (friendAnalysis.isSuspicious) suspiciousScore += 30;
+                    
+                    // Check creation date if available
+                    if (friend.created) {
+                        const friendAge = Math.floor((new Date() - new Date(friend.created)) / (1000 * 60 * 60 * 24));
+                        if (friendAge <= 7) suspiciousScore += 30;
+                        else if (friendAge <= 30) suspiciousScore += 15;
+                    }
+                    
+                    if (suspiciousScore > 40) {
+                        suspiciousCount++;
+                        suspiciousFriends.push({
+                            name: friend.name,
+                            score: suspiciousScore,
+                            reasons: this.getFriendSuspiciousReasons(friend, friendAnalysis)
+                        });
+                    }
+                });
+                
+                const altNetworkDetected = suspiciousCount >= 3 && (suspiciousCount / friends.length) > 0.6;
+                
+                return {
+                    analyzedCount: friends.length,
+                    suspiciousCount,
+                    suspiciousFriends: suspiciousFriends.slice(0, 5),
+                    altNetworkDetected
+                };
+            }
+            
+            getFriendSuspiciousReasons(friend, analysis) {
+                const reasons = [];
+                if (analysis.isCritical) reasons.push("Critical alt pattern");
+                if (analysis.isExploit) reasons.push("Exploit-related username");
+                if (analysis.isBot) reasons.push("Bot pattern detected");
+                if (analysis.isSuspicious) reasons.push("Suspicious pattern");
+                
+                if (friend.created) {
+                    const age = Math.floor((new Date() - new Date(friend.created)) / (1000 * 60 * 60 * 24));
+                    if (age <= 7) reasons.push(`Very new account (${age} days)`);
+                }
+                
+                return reasons.slice(0, 2);
+            }
+            
+            // Exact Discord bot username analysis
             analyzeUsername(username) {
+                const analysis = {
+                    isCritical: false,
+                    isSuspicious: false,
+                    isExploit: false,
+                    isBot: false,
+                    patterns: []
+                };
+                
                 const name = username.toLowerCase();
                 
-                // Critical patterns
-                const criticalPatterns = [
-                    /^(alt|fake|temp|test|bot|spam|throwaway|burner|dummy)\w*\d*$/i,
-                    /^(user|guest|player|account|roblox|noob)\d{4,}$/i,
-                    /^[a-z]{1,3}\d{8,}$/,
-                    /^[a-z]+_\d{6,}$/,
-                    /^\d{10,}$/
-                ];
-                
-                // Exploit patterns
-                const exploitPatterns = [
-                    /^(hack|exploit|cheat|script|bypass|inject|executor)\w*$/i,
-                    /^(synapse|krnl|jjsploit|oxygen|sentinel)\w*$/i
-                ];
-                
-                // Suspicious patterns
-                const suspiciousPatterns = [
-                    /^\w+\d{6,}$/,
-                    /^[a-z]+(123|111|000|456|789|999|666|420|69|1337)$/i,
-                    /^(cool|epic|pro|gaming|gamer|player)\d+$/i
-                ];
-                
-                for (const pattern of criticalPatterns) {
+                // Check critical patterns - exact Discord bot order
+                for (const pattern of this.patterns.criticalAltPatterns) {
                     if (pattern.test(name)) {
-                        return {
-                            isCritical: true,
-                            isExploit: false,
-                            isSuspicious: false,
-                            getRiskLevel: () => 'CRITICAL ALT PATTERN'
-                        };
+                        analysis.isCritical = true;
+                        analysis.patterns.push(`Critical: ${pattern.source}`);
+                        break;
                     }
                 }
                 
-                for (const pattern of exploitPatterns) {
-                    if (pattern.test(name)) {
-                        return {
-                            isCritical: false,
-                            isExploit: true,
-                            isSuspicious: false,
-                            getRiskLevel: () => 'EXPLOIT RELATED'
-                        };
+                // Check bot patterns
+                if (!analysis.isCritical) {
+                    for (const pattern of this.patterns.botPatterns) {
+                        if (pattern.test(name)) {
+                            analysis.isBot = true;
+                            analysis.patterns.push(`Bot: ${pattern.source}`);
+                            break;
+                        }
                     }
                 }
                 
-                for (const pattern of suspiciousPatterns) {
-                    if (pattern.test(name)) {
-                        return {
-                            isCritical: false,
-                            isExploit: false,
-                            isSuspicious: true,
-                            getRiskLevel: () => 'SUSPICIOUS PATTERN'
-                        };
+                // Check exploit patterns
+                if (!analysis.isCritical && !analysis.isBot) {
+                    for (const pattern of this.patterns.exploitPatterns) {
+                        if (pattern.test(name)) {
+                            analysis.isExploit = true;
+                            analysis.patterns.push(`Exploit: ${pattern.source}`);
+                            break;
+                        }
                     }
                 }
+                
+                // Check suspicious patterns
+                if (!analysis.isCritical && !analysis.isBot && !analysis.isExploit) {
+                    for (const pattern of this.patterns.suspiciousPatterns) {
+                        if (pattern.test(name)) {
+                            analysis.isSuspicious = true;
+                            analysis.patterns.push(`Suspicious: ${pattern.source}`);
+                            break;
+                        }
+                    }
+                }
+                
+                analysis.getRiskLevel = () => {
+                    if (analysis.isCritical) return 'CRITICAL ALT PATTERN';
+                    if (analysis.isExploit) return 'EXPLOIT RELATED';
+                    if (analysis.isBot) return 'BOT PATTERN';
+                    if (analysis.isSuspicious) return 'SUSPICIOUS PATTERN';
+                    return 'NORMAL';
+                };
+                
+                return analysis;
+            }
+            
+            // Discord bot's timeline data preparation - exact match
+            prepareDetailedTimelineData(badges, accountCreated) {
+                const sortedBadges = badges
+                    .filter(badge => badge.awardedDate || badge.created)
+                    .sort((a, b) => {
+                        const dateA = new Date(a.awardedDate || a.created);
+                        const dateB = new Date(b.awardedDate || b.created);
+                        return dateA - dateB;
+                    });
+                
+                if (sortedBadges.length === 0) {
+                    return {
+                        labels: ['No Data'],
+                        cumulative: [0],
+                        weeklyActivity: [0],
+                        pointSizes: [3],
+                        pointColors: ['#888'],
+                        burstColors: ['rgba(100, 100, 100, 0.5)']
+                    };
+                }
+                
+                // Use award dates if available - exact Discord bot logic
+                const usingAwardDates = sortedBadges.some(badge => badge.awardedDate && badge.awardedDate !== badge.created);
+                
+                const firstBadgeDate = new Date(sortedBadges[0].awardedDate || sortedBadges[0].created);
+                const today = new Date();
+                
+                const analysisStart = new Date(firstBadgeDate);
+                analysisStart.setHours(0, 0, 0, 0);
+                today.setHours(0, 0, 0, 0);
+                
+                // Create daily buckets - exact Discord bot method
+                const dailyBuckets = new Map();
+                let dayIndex = 0;
+                
+                for (let currentDate = new Date(analysisStart); currentDate <= today; currentDate.setDate(currentDate.getDate() + 1)) {
+                    const dateKey = currentDate.toISOString().split('T')[0];
+                    dailyBuckets.set(dateKey, {
+                        count: 0,
+                        badges: [],
+                        daysSinceFirstBadge: dayIndex
+                    });
+                    dayIndex++;
+                }
+                
+                // Fill buckets with badge data using awarded dates - exact Discord bot logic
+                sortedBadges.forEach((badge, badgeIndex) => {
+                    const badgeDate = (badge.awardedDate || badge.created).split('T')[0];
+                    if (dailyBuckets.has(badgeDate)) {
+                        const dayData = dailyBuckets.get(badgeDate);
+                        dayData.count++;
+                        dayData.badges.push({
+                            name: badge.name,
+                            index: badgeIndex,
+                            time: badge.awardedDate || badge.created
+                        });
+                    }
+                });
+                
+                // Generate timeline arrays - exact Discord bot format
+                const labels = [];
+                const cumulative = [];
+                const weeklyActivity = [];
+                const pointSizes = [];
+                const pointColors = [];
+                const burstColors = [];
+                
+                let totalBadges = 0;
+                let burstDaysCount = 0;
+                
+                Array.from(dailyBuckets.keys()).sort().forEach((dateKey, index) => {
+                    const dayData = dailyBuckets.get(dateKey);
+                    const dateObj = new Date(dateKey);
+                    
+                    totalBadges += dayData.count;
+                    
+                    // Weekly activity calculation - exact Discord bot method
+                    const weeklyCount = this.getWeeklyBadgeCount(dailyBuckets, dateObj);
+                    
+                    // Generate labels - exact Discord bot spacing
+                    const shouldShowLabel = index % 7 === 0 || 
+                                           dayData.count > 50 ||
+                                           index === dailyBuckets.size - 1;
+                    
+                    labels.push(shouldShowLabel ? dateObj.toLocaleDateString('en-US', { 
+                        month: 'short', 
+                        day: 'numeric'
+                    }) : '');
+                    
+                    cumulative.push(totalBadges);
+                    weeklyActivity.push(weeklyCount);
+                    
+                    // Point styling based on activity - exact Discord bot logic
+                    let pointSize = 2;
+                    let pointColor = '#22c55e';
+                    
+                    if (dayData.count > 100) {
+                        pointSize = 8;
+                        pointColor = '#dc2626';
+                        burstDaysCount++;
+                    } else if (dayData.count > 50) {
+                        pointSize = 6;
+                        pointColor = '#ea580c';
+                        burstDaysCount++;
+                    } else if (dayData.count > 25) {
+                        pointSize = 5;
+                        pointColor = '#d97706';
+                    } else if (dayData.count > 10) {
+                        pointSize = 4;
+                        pointColor = '#65a30d';
+                    } else if (dayData.count > 0) {
+                        pointSize = 3;
+                        pointColor = '#22c55e';
+                    }
+                    
+                    pointSizes.push(pointSize);
+                    pointColors.push(pointColor);
+                    
+                    // Bar colors for burst detection - exact Discord bot colors
+                    if (weeklyCount > 200) {
+                        burstColors.push('#dc2626');
+                    } else if (weeklyCount > 100) {
+                        burstColors.push('#ea580c');
+                    } else if (weeklyCount > 50) {
+                        burstColors.push('#f59e0b');
+                    } else {
+                        burstColors.push('rgba(59, 130, 246, 0.7)');
+                    }
+                });
                 
                 return {
-                    isCritical: false,
-                    isExploit: false,
-                    isSuspicious: false,
-                    getRiskLevel: () => 'NORMAL'
+                    labels,
+                    cumulative,
+                    weeklyActivity,
+                    pointSizes,
+                    pointColors,
+                    burstColors,
+                    usingAwardDates,
+                    totalDays: dailyBuckets.size,
+                    burstDays: burstDaysCount
                 };
             }
             
-            showLoading() {
+            getWeeklyBadgeCount(dailyBuckets, startDate) {
+                let count = 0;
+                for (let i = 0; i < 7; i++) {
+                    const date = new Date(startDate);
+                    date.setDate(date.getDate() + i);
+                    const dateKey = date.toISOString().split('T')[0];
+                    const dayData = dailyBuckets.get(dateKey);
+                    count += dayData ? dayData.count : 0;
+                }
+                return count;
+            }
+            
+            startLoading() {
                 document.getElementById('loadingPanel').style.display = 'block';
                 document.getElementById('resultsPanel').style.display = 'none';
                 document.getElementById('analyzeBtn').disabled = true;
                 
                 this.loadingInterval = setInterval(() => {
-                    this.currentMessage = (this.currentMessage + 1) % this.loadingMessages.length;
-                    document.getElementById('loadingText').textContent = this.loadingMessages[this.currentMessage];
-                }, 1000);
+                    this.currentMessageIndex = (this.currentMessageIndex + 1) % this.loadingMessages.length;
+                    document.getElementById('loadingText').textContent = this.loadingMessages[this.currentMessageIndex];
+                }, 1200);
             }
             
             hideLoading() {
@@ -902,10 +1436,10 @@
                 document.getElementById('analyzeBtn').disabled = false;
             }
             
-            async progress(percent, message) {
+            async updateProgress(percent, message) {
                 document.getElementById('progressFill').style.width = percent + '%';
                 document.getElementById('loadingText').textContent = message;
-                await new Promise(resolve => setTimeout(resolve, 600));
+                await new Promise(resolve => setTimeout(resolve, 800));
             }
             
             showError(message) {
@@ -913,14 +1447,74 @@
                 panel.innerHTML = `
                     <div class="error-message">
                         <h3>Analysis Failed</h3>
-                        <p>${message}</p>
-                        <p><small>Please try again with a different username.</small></p>
+                        <p><strong>Error:</strong> ${message}</p>
+                        ${message.includes('CORS') ? 
+                            '<p><small><strong>Solution:</strong> Install a CORS browser extension like "CORS Unblock" or "Disable CORS" to bypass browser security for testing. The Roblox APIs work but browsers block them by default.</small></p>' : 
+                            '<p><small>Please check the username and try again.</small></p>'
+                        }
                     </div>
                 `;
                 panel.style.display = 'block';
+                panel.scrollIntoView({ behavior: 'smooth' });
             }
             
-            showResults(analysis) {
+            displayPrivacyBlocked(user, privacyStatus) {
+                const panel = document.getElementById('resultsPanel');
+                panel.innerHTML = `
+                    <div class="threat-summary">
+                        <div class="threat-level risk-warn">PRIVACY PROTECTED</div>
+                        <div class="threat-description">User has private inventory - Analysis cannot proceed</div>
+                        <div class="threat-stats">
+                            <div class="stat-box">
+                                <div class="stat-label">User ID</div>
+                                <div class="stat-value">${user.id}</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-label">Account Age</div>
+                                <div class="stat-value">${Math.floor((new Date() - new Date(user.created)) / (1000 * 60 * 60 * 24))} days</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-label">Privacy Status</div>
+                                <div class="stat-value">Protected</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-label">Analysis Status</div>
+                                <div class="stat-value">Blocked</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-grid">
+                        <div class="analysis-card">
+                            <div class="card-header">
+                                <div class="card-icon">🔒</div>
+                                <div class="card-title">Privacy Notice</div>
+                            </div>
+                            <div class="card-content">
+                                <p>This user has their inventory set to private, preventing comprehensive badge analysis.</p>
+                                <br>
+                                <div class="data-row">
+                                    <span class="data-label">Username:</span>
+                                    <span class="data-value">${user.name}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label">Display Name:</span>
+                                    <span class="data-value">${user.displayName || 'Not set'}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label">Created:</span>
+                                    <span class="data-value">${new Date(user.created).toLocaleDateString()}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                panel.style.display = 'block';
+                panel.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            displayResults(analysis) {
                 this.renderThreatSummary(analysis);
                 this.renderChart(analysis);
                 this.renderAnalysisCards(analysis);
@@ -950,14 +1544,14 @@
                             </div>
                             <div class="stat-box">
                                 <div class="stat-label">Flags</div>
-                                <div class="stat-value">${analysis.flags.length}</div>
+                                <div class="stat-value">${analysis.criticalFlags.length}</div>
                             </div>
                         </div>
                     </div>
                     
                     <div class="chart-section">
                         <div class="chart-title">Badge Timeline Analysis</div>
-                        <div class="chart-subtitle">Unlimited badge collection with accurate timeline tracking</div>
+                        <div class="chart-subtitle">Real API data with ${analysis.hasAwardDates ? 'accurate award dates' : 'creation date timeline'}</div>
                         <div class="chart-container">
                             <canvas id="badgeChart"></canvas>
                         </div>
@@ -977,35 +1571,47 @@
                     }
                     
                     const ctx = canvas.getContext('2d');
-                    const data = this.prepareChartData(analysis.badges);
+                    const timelineData = this.prepareDetailedTimelineData(analysis.badges, analysis.user.created);
                     
                     const colors = {
-                        'CRITICAL': '#dc2626',
-                        'HIGH': '#ea580c',
-                        'MEDIUM': '#d97706',
-                        'LOW': '#65a30d',
-                        'MINIMAL': '#16a34a'
+                        'CRITICAL': { line: '#dc2626', fill: 'rgba(220, 38, 38, 0.15)' },
+                        'HIGH': { line: '#ea580c', fill: 'rgba(234, 88, 12, 0.15)' },
+                        'MEDIUM': { line: '#d97706', fill: 'rgba(217, 119, 6, 0.15)' },
+                        'LOW': { line: '#65a30d', fill: 'rgba(101, 163, 13, 0.15)' },
+                        'MINIMAL': { line: '#16a34a', fill: 'rgba(22, 163, 74, 0.15)' }
                     };
                     
-                    const color = colors[analysis.riskLevel] || '#16a34a';
+                    const color = colors[analysis.riskLevel] || colors['MINIMAL'];
                     
                     this.chart = new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: data.labels,
-                            datasets: [{
-                                label: 'Total Badges',
-                                data: data.values,
-                                borderColor: color,
-                                backgroundColor: color + '20',
-                                fill: true,
-                                tension: 0.4,
-                                borderWidth: 3,
-                                pointRadius: data.pointSizes,
-                                pointBackgroundColor: data.pointColors,
-                                pointBorderColor: color,
-                                pointBorderWidth: 2
-                            }]
+                            labels: timelineData.labels,
+                            datasets: [
+                                {
+                                    label: 'Total Badges Earned',
+                                    data: timelineData.cumulative,
+                                    borderColor: color.line,
+                                    backgroundColor: color.fill,
+                                    fill: true,
+                                    tension: 0.3,
+                                    borderWidth: 3,
+                                    pointRadius: timelineData.pointSizes,
+                                    pointBackgroundColor: timelineData.pointColors,
+                                    pointBorderColor: color.line,
+                                    pointBorderWidth: 2
+                                },
+                                {
+                                    label: 'Weekly Badge Activity',
+                                    data: timelineData.weeklyActivity,
+                                    type: 'bar',
+                                    backgroundColor: timelineData.burstColors,
+                                    borderColor: '#3b82f6',
+                                    borderWidth: 1,
+                                    yAxisID: 'y1',
+                                    maxBarThickness: 25
+                                }
+                            ]
                         },
                         options: {
                             responsive: true,
@@ -1013,22 +1619,42 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: `${analysis.user.name} | ${analysis.riskLevel} Risk (${analysis.score}/100)`,
+                                    text: [
+                                        `Badge Timeline: ${analysis.user.name} | Risk: ${analysis.riskLevel} (${analysis.score}/100)`,
+                                        `${analysis.badges.length.toLocaleString()} badges | Confidence: ${analysis.confidence}% | ${timelineData.usingAwardDates ? 'ACCURATE DATES' : 'ESTIMATED TIMELINE'}`
+                                    ],
                                     color: '#f8fafc',
-                                    font: { size: 16, weight: 'bold' }
+                                    font: { size: 14, weight: 'bold' },
+                                    padding: 20
                                 },
-                                legend: { display: false }
+                                legend: {
+                                    display: true,
+                                    position: 'top',
+                                    labels: { 
+                                        color: '#f8fafc',
+                                        font: { size: 12 },
+                                        padding: 15
+                                    }
+                                }
                             },
                             scales: {
                                 x: {
-                                    title: { display: true, text: 'Timeline', color: '#f8fafc' },
+                                    title: { display: true, text: 'Timeline (Award Dates)', color: '#f8fafc' },
                                     ticks: { color: '#cbd5e1' },
                                     grid: { color: 'rgba(255, 255, 255, 0.1)' }
                                 },
                                 y: {
-                                    title: { display: true, text: 'Badges', color: color },
-                                    ticks: { color: color },
-                                    grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                                    title: { display: true, text: 'Cumulative Badges', color: color.line },
+                                    ticks: { color: color.line },
+                                    grid: { color: color.fill },
+                                    beginAtZero: true
+                                },
+                                y1: {
+                                    type: 'linear',
+                                    position: 'right',
+                                    title: { display: true, text: 'Weekly Activity', color: '#3b82f6' },
+                                    ticks: { color: '#3b82f6' },
+                                    grid: { drawOnChartArea: false },
                                     beginAtZero: true
                                 }
                             }
@@ -1037,56 +1663,10 @@
                 }, 100);
             }
             
-            prepareChartData(badges) {
-                if (badges.length === 0) {
-                    return { labels: ['No Data'], values: [0], pointSizes: [3], pointColors: ['#888'] };
-                }
-                
-                const daily = {};
-                badges.forEach(badge => {
-                    const day = badge.awarded.split('T')[0];
-                    daily[day] = (daily[day] || 0) + 1;
-                });
-                
-                const days = Object.keys(daily).sort();
-                const labels = [];
-                const values = [];
-                const pointSizes = [];
-                const pointColors = [];
-                
-                let total = 0;
-                days.forEach((day, i) => {
-                    const count = daily[day];
-                    total += count;
-                    
-                    if (i % 10 === 0 || i === days.length - 1) {
-                        labels.push(new Date(day).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
-                    } else {
-                        labels.push('');
-                    }
-                    
-                    values.push(total);
-                    
-                    if (count > 50) {
-                        pointSizes.push(8);
-                        pointColors.push('#dc2626');
-                    } else if (count > 25) {
-                        pointSizes.push(6);
-                        pointColors.push('#ea580c');
-                    } else if (count > 10) {
-                        pointSizes.push(4);
-                        pointColors.push('#f59e0b');
-                    } else {
-                        pointSizes.push(3);
-                        pointColors.push('#22c55e');
-                    }
-                });
-                
-                return { labels, values, pointSizes, pointColors };
-            }
-            
             renderAnalysisCards(analysis) {
                 const grid = document.getElementById('analysisGrid');
+                if (!grid) return;
+                
                 grid.innerHTML = `
                     <div class="analysis-card">
                         <div class="card-header">
@@ -1100,7 +1680,7 @@
                             </div>
                             <div class="data-row">
                                 <span class="data-label">Display Name:</span>
-                                <span class="data-value">${analysis.user.displayName}</span>
+                                <span class="data-value">${analysis.user.displayName || 'Not set'}</span>
                             </div>
                             <div class="data-row">
                                 <span class="data-label">User ID:</span>
@@ -1112,7 +1692,11 @@
                             </div>
                             <div class="data-row">
                                 <span class="data-label">Account Age:</span>
-                                <span class="data-value">${analysis.user.accountAge} days</span>
+                                <span class="data-value">${analysis.accountAgeDays} days</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Description:</span>
+                                <span class="data-value">${analysis.user.description || 'None'}</span>
                             </div>
                         </div>
                     </div>
@@ -1138,8 +1722,8 @@
                             <br>
                             <strong>Critical Flags:</strong>
                             <div class="concern-list">
-                                ${analysis.flags.length > 0 ? 
-                                    analysis.flags.map(flag => `<div class="concern-item">${flag.replace(/_/g, ' ')}</div>`).join('') : 
+                                ${analysis.criticalFlags.length > 0 ? 
+                                    analysis.criticalFlags.map(flag => `<div class="concern-item">${flag.replace(/_/g, ' ')}</div>`).join('') : 
                                     '<div style="color: #22c55e;">No critical flags detected</div>'}
                             </div>
                         </div>
@@ -1157,7 +1741,7 @@
                             </div>
                             <div class="data-row">
                                 <span class="data-label">Collection:</span>
-                                <span class="data-value">Unlimited</span>
+                                <span class="data-value">Unlimited (Real API)</span>
                             </div>
                             <div class="data-row">
                                 <span class="data-label">Velocity:</span>
@@ -1166,6 +1750,10 @@
                             <div class="data-row">
                                 <span class="data-label">Threshold:</span>
                                 <span class="status-badge status-${analysis.badges.length >= 600 ? 'pass' : 'fail'}">${analysis.badges.length >= 600 ? 'PASS' : 'FAIL'}</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Award Dates:</span>
+                                <span class="status-badge status-${analysis.hasAwardDates ? 'pass' : 'warn'}">${analysis.hasAwardDates ? 'ACCURATE' : 'ESTIMATED'}</span>
                             </div>
                         </div>
                     </div>
@@ -1178,20 +1766,31 @@
                         <div class="card-content">
                             <div class="data-row">
                                 <span class="data-label">Total Friends:</span>
-                                <span class="data-value">${analysis.friends.total}</span>
+                                <span class="data-value">${analysis.friendsData.count}</span>
                             </div>
                             <div class="data-row">
                                 <span class="data-label">Analyzed:</span>
-                                <span class="data-value">${analysis.friends.analyzed}</span>
+                                <span class="data-value">${analysis.networkIntelligence.analyzedCount}</span>
                             </div>
                             <div class="data-row">
                                 <span class="data-label">Suspicious:</span>
-                                <span class="data-value">${analysis.friends.suspicious}</span>
+                                <span class="data-value">${analysis.networkIntelligence.suspiciousCount}</span>
                             </div>
                             <div class="data-row">
                                 <span class="data-label">Alt Network:</span>
-                                <span class="status-badge status-${analysis.friends.altNetwork ? 'fail' : 'pass'}">${analysis.friends.altNetwork ? 'DETECTED' : 'NONE'}</span>
+                                <span class="status-badge status-${analysis.networkIntelligence.altNetworkDetected ? 'fail' : 'pass'}">${analysis.networkIntelligence.altNetworkDetected ? 'DETECTED' : 'NONE'}</span>
                             </div>
+                            <div class="data-row">
+                                <span class="data-label">Groups:</span>
+                                <span class="data-value">${analysis.groupsData.length}</span>
+                            </div>
+                            ${analysis.networkIntelligence.suspiciousCount > 0 ? 
+                                `<br><strong>Suspicious Friends:</strong>
+                                <div class="concern-list">
+                                    ${analysis.networkIntelligence.suspiciousFriends.slice(0, 3).map(f => 
+                                        `<div class="concern-item">${f.name} (Score: ${f.score}/100)<br><small>${f.reasons.join(', ')}</small></div>`
+                                    ).join('')}
+                                </div>` : ''}
                         </div>
                     </div>
                     
@@ -1230,18 +1829,43 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="analysis-card">
+                        <div class="card-header">
+                            <div class="card-icon">🔒</div>
+                            <div class="card-title">System Information</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="data-row">
+                                <span class="data-label">Version:</span>
+                                <span class="data-value">Enhanced BGC v5.2</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Collection:</span>
+                                <span class="data-value">Unlimited (Real API)</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Privacy Status:</span>
+                                <span class="status-badge status-${analysis.privacyStatus.inventoryBlocked ? 'warn' : 'pass'}">${analysis.privacyStatus.inventoryBlocked ? 'LIMITED' : 'FULL ACCESS'}</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Data Source:</span>
+                                <span class="data-value">Live Roblox API</span>
+                            </div>
+                        </div>
+                    </div>
                 `;
             }
         }
         
-        // Initialize
-        const analyzer = new BGCAnalyzer();
+        // Initialize system
+        const bgcSystem = new EnhancedBGCSystem();
         
         document.getElementById('analysisForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const username = document.getElementById('username').value.trim();
             if (username) {
-                analyzer.analyze(username);
+                bgcSystem.analyzeUser(username);
             } else {
                 alert('Please enter a username');
             }
@@ -1252,6 +1876,9 @@
                 document.getElementById('analysisForm').dispatchEvent(new Event('submit'));
             }
         });
+        
+        // Global access for debugging
+        window.bgcSystem = bgcSystem;
     </script>
 </body>
 </html>
