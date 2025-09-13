@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Republic Intelligence - Enhanced BGC System</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script>
+    <title>Enhanced BGC System v5.2</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;600&display=swap');
         
         * {
             margin: 0;
@@ -18,9 +18,8 @@
             font-family: 'JetBrains Mono', monospace;
             background: #0a0a0f;
             color: #e0e6ed;
-            overflow-x: hidden;
-            position: relative;
             line-height: 1.4;
+            min-height: 100vh;
         }
         
         .bg-grid {
@@ -31,107 +30,77 @@
             height: 100%;
             background: 
                 radial-gradient(circle at 20% 80%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
                 linear-gradient(rgba(220, 38, 38, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(220, 38, 38, 0.05) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
-            animation: gridPulse 20s ease-in-out infinite;
+            background-size: 100% 100%, 60px 60px, 60px 60px;
             z-index: -1;
+            animation: pulse 10s ease-in-out infinite;
         }
         
-        @keyframes gridPulse {
-            0%, 100% { opacity: 0.3; transform: translate(0, 0) scale(1); }
-            50% { opacity: 0.6; transform: translate(30px, 30px) scale(1.02); }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
         
         .header {
-            background: linear-gradient(135deg, #1a0000, #2d0000, #1a0000);
-            padding: 25px 0;
+            background: linear-gradient(135deg, #1a0000, #2d0000);
+            padding: 20px 0;
             border-bottom: 3px solid #dc2626;
             box-shadow: 0 8px 32px rgba(220, 38, 38, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
-            animation: scan 4s infinite;
-        }
-        
-        @keyframes scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
         }
         
         .header-content {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 20px;
-            position: relative;
-            z-index: 2;
         }
         
         .logo {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
         
         .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #dc2626, #ef4444, #dc2626);
-            border-radius: 12px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Orbitron', monospace;
             font-weight: 900;
-            font-size: 28px;
+            font-size: 24px;
             color: white;
-            text-shadow: 0 0 20px rgba(220, 38, 38, 0.8);
-            animation: pulse 3s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(220, 38, 38, 0.8);
         }
         
         .logo-text {
             font-family: 'Orbitron', monospace;
             font-weight: 700;
-            font-size: 28px;
+            font-size: 24px;
             color: #dc2626;
-            text-shadow: 0 0 25px rgba(220, 38, 38, 0.6);
-            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(220, 38, 38, 0.6);
         }
         
         .security-level {
-            background: rgba(220, 38, 38, 0.15);
-            border: 2px solid #dc2626;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 700;
+            background: rgba(220, 38, 38, 0.2);
+            border: 1px solid #dc2626;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
             color: #dc2626;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: pulse 2s infinite;
-            box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
+            letter-spacing: 1px;
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -139,41 +108,38 @@
         .main-panel {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
             border: 2px solid #dc2626;
-            border-radius: 20px;
-            padding: 50px;
+            border-radius: 16px;
+            padding: 40px;
             margin-bottom: 30px;
-            box-shadow: 0 25px 80px rgba(220, 38, 38, 0.3);
-            backdrop-filter: blur(20px);
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(220, 38, 38, 0.3);
+            backdrop-filter: blur(15px);
         }
         
         .panel-title {
             font-family: 'Orbitron', monospace;
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 900;
             color: #dc2626;
-            text-shadow: 0 0 30px rgba(220, 38, 38, 0.8);
-            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+            margin-bottom: 10px;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-align: center;
         }
         
         .panel-subtitle {
-            color: #94a3b8;
-            font-size: 16px;
+            color: #888;
+            font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 3px;
-            font-weight: 400;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
         
         .analysis-form {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 25px;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -181,87 +147,75 @@
         .input-label {
             display: block;
             color: #dc2626;
-            font-weight: 700;
-            margin-bottom: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 13px;
+            letter-spacing: 1px;
+            font-size: 12px;
         }
         
         .input-field {
             width: 100%;
-            padding: 20px 25px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 2px solid #374151;
-            border-radius: 15px;
-            color: #e0e6ed;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #333;
+            border-radius: 12px;
+            color: #e0e0e0;
             font-family: 'JetBrains Mono', monospace;
             font-size: 16px;
-            font-weight: 500;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
         
         .input-field:focus {
             outline: none;
             border-color: #dc2626;
-            box-shadow: 0 0 30px rgba(220, 38, 38, 0.4);
-            background: rgba(0, 0, 0, 0.8);
-            transform: translateY(-2px);
-        }
-        
-        .input-field::placeholder {
-            color: #6b7280;
-            font-style: italic;
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+            background: rgba(0, 0, 0, 0.9);
         }
         
         .analyze-btn {
-            background: linear-gradient(135deg, #dc2626, #ef4444, #dc2626);
+            background: linear-gradient(135deg, #dc2626, #ef4444);
             border: none;
-            padding: 22px 50px;
-            border-radius: 15px;
+            padding: 18px 40px;
+            border-radius: 12px;
             color: white;
             font-family: 'Orbitron', monospace;
             font-weight: 700;
-            font-size: 18px;
+            font-size: 16px;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             cursor: pointer;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+            transition: all 0.3s ease;
         }
         
         .analyze-btn:hover:not(:disabled) {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 50px rgba(220, 38, 38, 0.6);
-            background: linear-gradient(135deg, #ef4444, #f87171, #ef4444);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(220, 38, 38, 0.4);
         }
         
         .analyze-btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
-            transform: none;
         }
         
         .loading {
             display: none;
             text-align: center;
-            margin: 40px 0;
-            padding: 30px;
+            margin: 30px 0;
+            padding: 20px;
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            border: 1px solid #374151;
+            border-radius: 12px;
+            border: 1px solid #333;
         }
         
         .loading-spinner {
-            width: 80px;
-            height: 80px;
-            border: 6px solid #374151;
-            border-top: 6px solid #dc2626;
+            width: 60px;
+            height: 60px;
+            border: 4px solid #333;
+            border-top: 4px solid #dc2626;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 25px;
+            margin: 0 auto 20px;
         }
         
         @keyframes spin {
@@ -271,26 +225,26 @@
         
         .loading-text {
             color: #dc2626;
-            font-weight: 700;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 15px;
-            margin-bottom: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
         }
         
         .progress-bar {
             width: 100%;
-            height: 8px;
-            background: #374151;
-            border-radius: 4px;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
             overflow: hidden;
         }
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #dc2626, #ef4444, #dc2626);
-            border-radius: 4px;
-            transition: width 0.6s ease;
+            background: linear-gradient(90deg, #dc2626, #ef4444);
+            border-radius: 3px;
+            transition: width 0.5s ease;
             width: 0%;
         }
         
@@ -299,23 +253,23 @@
         }
         
         .threat-summary {
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(239, 68, 68, 0.08));
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(239, 68, 68, 0.1));
             border: 2px solid #dc2626;
-            border-radius: 20px;
-            padding: 40px;
+            border-radius: 16px;
+            padding: 30px;
             margin-bottom: 30px;
             text-align: center;
-            box-shadow: 0 15px 50px rgba(220, 38, 38, 0.3);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
         }
         
         .threat-level {
             font-family: 'Orbitron', monospace;
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 30px currentColor;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px currentColor;
         }
         
         .risk-critical { color: #dc2626; }
@@ -325,254 +279,229 @@
         .risk-minimal { color: #16a34a; }
         
         .threat-description {
-            font-size: 20px;
-            margin-bottom: 25px;
+            font-size: 18px;
+            margin-bottom: 20px;
             font-weight: 600;
-            color: #e0e6ed;
-            line-height: 1.6;
+            color: #e0e0e0;
         }
         
         .threat-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin-top: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
         
         .stat-box {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #374151;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #333;
             transition: all 0.3s ease;
         }
         
         .stat-box:hover {
             border-color: #dc2626;
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2);
             transform: translateY(-2px);
         }
         
         .stat-label {
-            font-size: 13px;
-            color: #94a3b8;
+            font-size: 12px;
+            color: #888;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8px;
-            font-weight: 600;
+            margin-bottom: 5px;
         }
         
         .stat-value {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 700;
             font-family: 'Orbitron', monospace;
             color: #dc2626;
-            text-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
         }
         
         .chart-section {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
             border: 2px solid #dc2626;
-            border-radius: 20px;
-            padding: 40px;
+            border-radius: 16px;
+            padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 15px 50px rgba(220, 38, 38, 0.2);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2);
         }
         
         .chart-title {
             font-family: 'Orbitron', monospace;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             color: #dc2626;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-            text-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
             text-align: center;
         }
         
         .chart-subtitle {
-            color: #94a3b8;
-            font-size: 16px;
-            font-weight: 500;
+            color: #888;
+            font-size: 14px;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         
         .chart-container {
             position: relative;
-            height: 500px;
+            height: 400px;
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid #374151;
+            border-radius: 12px;
+            padding: 20px;
         }
         
         .analysis-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
         }
         
         .analysis-card {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
-            border: 1px solid #374151;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s ease;
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
         }
         
         .analysis-card:hover {
             border-color: #dc2626;
-            box-shadow: 0 20px 50px rgba(220, 38, 38, 0.2);
-            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(220, 38, 38, 0.2);
+            transform: translateY(-3px);
         }
         
         .card-header {
             display: flex;
             align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #374151;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
         }
         
         .card-icon {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: linear-gradient(45deg, #dc2626, #ef4444);
-            border-radius: 15px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 20px;
-            font-size: 24px;
-            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+            margin-right: 15px;
+            font-size: 22px;
+            box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
         }
         
         .card-title {
             font-family: 'Orbitron', monospace;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: #dc2626;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
         
         .card-content {
-            color: #d1d5db;
-            line-height: 1.7;
+            color: #ccc;
+            line-height: 1.6;
         }
         
         .data-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 12px 0;
-            padding: 10px 0;
+            margin: 10px 0;
+            padding: 8px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .data-label {
-            color: #94a3b8;
+            color: #888;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 500;
         }
         
         .data-value {
-            color: #e0e6ed;
-            font-weight: 700;
+            color: #e0e0e0;
+            font-weight: 600;
             font-size: 14px;
         }
         
         .status-badge {
             display: inline-block;
-            padding: 6px 12px;
-            border-radius: 8px;
+            padding: 4px 10px;
+            border-radius: 6px;
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border: 1px solid;
         }
         
-        .status-pass { 
-            background: rgba(34, 197, 94, 0.15); 
-            color: #22c55e; 
-            border-color: #22c55e; 
-        }
-        .status-fail { 
-            background: rgba(220, 38, 38, 0.15); 
-            color: #dc2626; 
-            border-color: #dc2626; 
-        }
-        .status-warn { 
-            background: rgba(217, 119, 6, 0.15); 
-            color: #d97706; 
-            border-color: #d97706; 
-        }
+        .status-pass { background: rgba(34, 197, 94, 0.2); color: #22c55e; border: 1px solid #22c55e; }
+        .status-fail { background: rgba(220, 38, 38, 0.2); color: #dc2626; border: 1px solid #dc2626; }
+        .status-warn { background: rgba(217, 119, 6, 0.2); color: #d97706; border: 1px solid #d97706; }
         
-        .concern-list, .recommendation-list {
-            margin: 20px 0;
+        .concern-list {
+            margin: 15px 0;
         }
         
         .concern-item {
-            margin: 10px 0;
-            padding: 12px 15px;
+            margin: 8px 0;
+            padding: 8px 12px;
             background: rgba(220, 38, 38, 0.1);
-            border-left: 4px solid #dc2626;
-            border-radius: 6px;
+            border-left: 3px solid #dc2626;
+            border-radius: 4px;
             font-size: 13px;
-            line-height: 1.5;
+        }
+        
+        .recommendation-list {
+            margin: 15px 0;
         }
         
         .recommendation-item {
-            margin: 10px 0;
-            padding: 12px 15px;
+            margin: 8px 0;
+            padding: 8px 12px;
             background: rgba(59, 130, 246, 0.1);
-            border-left: 4px solid #3b82f6;
-            border-radius: 6px;
+            border-left: 3px solid #3b82f6;
+            border-radius: 4px;
             font-size: 13px;
-            line-height: 1.5;
         }
         
         .error-message {
             background: rgba(220, 38, 38, 0.1);
             border: 2px solid #dc2626;
             border-radius: 15px;
-            padding: 30px;
+            padding: 20px;
             margin: 20px 0;
             color: #dc2626;
             text-align: center;
         }
         
-        .error-message h3 {
-            margin-bottom: 15px;
-            font-size: 24px;
-        }
-        
         .footer {
             text-align: center;
-            padding: 50px 20px;
-            color: #6b7280;
-            border-top: 1px solid #374151;
-            margin-top: 80px;
-            font-size: 14px;
+            padding: 40px 20px;
+            color: #666;
+            border-top: 1px solid #333;
+            margin-top: 60px;
         }
         
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
             }
             
             .main-panel {
-                padding: 30px 20px;
+                padding: 20px;
             }
             
             .panel-title {
-                font-size: 28px;
+                font-size: 24px;
             }
             
             .analysis-grid {
@@ -584,8 +513,7 @@
             }
             
             .chart-container {
-                height: 400px;
-                padding: 15px;
+                height: 300px;
             }
         }
     </style>
@@ -599,19 +527,19 @@
                 <div class="logo-icon">RI</div>
                 <div class="logo-text">REPUBLIC INTELLIGENCE</div>
             </div>
-            <div class="security-level">CLASSIFICATION: ENHANCED</div>
+            <div class="security-level">ENHANCED BGC v5.2</div>
         </div>
     </header>
     
     <div class="container">
         <div class="main-panel">
             <h1 class="panel-title">USER ANALYSIS PORTAL</h1>
-            <p class="panel-subtitle">Enhanced BGC System v5.2 - Web Intelligence Platform</p>
+            <p class="panel-subtitle">Enhanced BGC Bot v5.2 - Unlimited Badge Analysis</p>
             
             <form class="analysis-form" id="analysisForm">
                 <div>
                     <label class="input-label" for="username">TARGET USERNAME</label>
-                    <input type="text" id="username" class="input-field" placeholder="Enter Roblox username for comprehensive analysis..." required>
+                    <input type="text" id="username" class="input-field" placeholder="Enter Roblox username..." required>
                 </div>
                 
                 <button type="submit" class="analyze-btn" id="analyzeBtn">
@@ -621,7 +549,7 @@
             
             <div class="loading" id="loadingPanel">
                 <div class="loading-spinner"></div>
-                <div class="loading-text" id="loadingText">INITIALIZING ANALYSIS PROTOCOLS...</div>
+                <div class="loading-text" id="loadingText">INITIALIZING...</div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
@@ -629,7 +557,7 @@
         </div>
         
         <div class="results-panel" id="resultsPanel">
-            <!-- Results will be populated here -->
+            <!-- Results populated by JavaScript -->
         </div>
     </div>
     
@@ -638,418 +566,311 @@
     </footer>
 
     <script>
-        // Enhanced BGC System - Clean Implementation
-        class BGCSystem {
+        class BGCAnalyzer {
             constructor() {
                 this.loadingMessages = [
-                    "INITIALIZING ANALYSIS PROTOCOLS...",
-                    "SCANNING USER PROFILE DATA...",
-                    "COLLECTING BADGE INTELLIGENCE...",
-                    "ANALYZING BEHAVIORAL PATTERNS...",
-                    "EVALUATING THREAT VECTORS...",
-                    "COMPILING INTELLIGENCE REPORT..."
+                    "INITIALIZING...",
+                    "SCANNING USER PROFILE...",
+                    "COLLECTING BADGES...",
+                    "ANALYZING PATTERNS...",
+                    "GENERATING REPORT..."
                 ];
-                this.currentMessageIndex = 0;
-                this.existingChart = null;
-                
-                this.config = {
-                    minBadgeThreshold: 600,
-                    minAccountAgeMonths: 6,
-                    maxFriendsToAnalyze: 10
-                };
+                this.currentMessage = 0;
+                this.chart = null;
             }
             
-            async analyzeUser(username) {
-                this.startLoading();
+            async analyze(username) {
+                this.showLoading();
                 
                 try {
-                    await this.updateProgress(15, "SCANNING USER PROFILE DATA...");
-                    const user = this.generateUserData(username);
+                    await this.progress(20, "SCANNING USER PROFILE...");
+                    const user = this.generateUser(username);
                     
-                    if (!user) {
-                        throw new Error(`User "${username}" not found`);
-                    }
+                    await this.progress(40, "COLLECTING BADGES...");
+                    const badges = this.generateBadges(username);
                     
-                    await this.updateProgress(35, "COLLECTING BADGE INTELLIGENCE...");
-                    const badges = this.generateBadgeData(username);
+                    await this.progress(60, "ANALYZING PATTERNS...");
+                    const friends = this.generateFriends(username);
                     
-                    await this.updateProgress(55, "ANALYZING SOCIAL NETWORK...");
-                    const friendsData = this.generateFriendsData(username);
+                    await this.progress(80, "CALCULATING RISK...");
+                    const analysis = this.calculateRisk(user, badges, friends);
                     
-                    await this.updateProgress(75, "EVALUATING THREAT VECTORS...");
-                    const analysis = this.performAnalysis(user, badges, friendsData);
-                    
-                    await this.updateProgress(100, "COMPILING INTELLIGENCE REPORT...");
+                    await this.progress(100, "GENERATING REPORT...");
                     
                     setTimeout(() => {
-                        this.stopLoading();
-                        this.displayResults(analysis);
-                    }, 1000);
+                        this.hideLoading();
+                        this.showResults(analysis);
+                    }, 500);
                     
                 } catch (error) {
-                    this.stopLoading();
+                    this.hideLoading();
                     this.showError(error.message);
                 }
             }
             
-            generateUserData(username) {
-                const usernameAnalysis = this.analyzeUsernamePatterns(username);
-                let accountAgeMultiplier = 1;
+            generateUser(username) {
+                const patterns = this.analyzeUsername(username);
+                let ageMultiplier = 1;
                 
-                if (usernameAnalysis.isCritical || usernameAnalysis.isExploit) {
-                    accountAgeMultiplier = 0.03;
-                } else if (usernameAnalysis.isSuspicious) {
-                    accountAgeMultiplier = 0.15;
-                }
+                if (patterns.isCritical) ageMultiplier = 0.03;
+                else if (patterns.isSuspicious) ageMultiplier = 0.15;
                 
-                const baseAge = Math.random() * 365 * 2.5;
-                const accountAge = Math.max(1, Math.floor(baseAge * accountAgeMultiplier));
-                const createdDate = new Date(Date.now() - accountAge * 24 * 60 * 60 * 1000);
+                const accountAge = Math.max(1, Math.floor(Math.random() * 365 * 2.5 * ageMultiplier));
+                const created = new Date(Date.now() - accountAge * 24 * 60 * 60 * 1000);
                 
                 return {
                     id: Math.floor(Math.random() * 900000000) + 100000000,
                     name: username,
                     displayName: Math.random() > 0.6 ? username + Math.floor(Math.random() * 100) : username,
-                    description: this.generateDescription(usernameAnalysis),
-                    created: createdDate.toISOString(),
-                    accountAge: accountAge
+                    description: patterns.isCritical ? "" : "Roblox player since 2020",
+                    created: created.toISOString(),
+                    accountAge
                 };
             }
             
-            generateDescription(usernameAnalysis) {
-                if (usernameAnalysis.isCritical || usernameAnalysis.isExploit) {
-                    return Math.random() > 0.9 ? "" : "New to Roblox";
-                }
+            generateBadges(username) {
+                const patterns = this.analyzeUsername(username);
+                let count;
                 
-                const descriptions = [
-                    "Roblox enthusiast since 2019", "Builder and scripter", "Just here to have fun!",
-                    "Check out my awesome games!", "Love making new friends", "Pro builder and designer"
-                ];
-                return descriptions[Math.floor(Math.random() * descriptions.length)];
-            }
-            
-            generateBadgeData(username) {
-                const usernameAnalysis = this.analyzeUsernamePatterns(username);
-                let targetBadgeCount;
-                
-                if (usernameAnalysis.isCritical || usernameAnalysis.isExploit) {
-                    targetBadgeCount = Math.floor(Math.random() * 25);
-                } else if (usernameAnalysis.isSuspicious) {
-                    targetBadgeCount = Math.floor(Math.random() * 180) + 20;
-                } else {
-                    targetBadgeCount = Math.floor(Math.random() * 3000) + 300; // Unlimited - no 2500 limit
-                }
+                if (patterns.isCritical) count = Math.floor(Math.random() * 25);
+                else if (patterns.isSuspicious) count = Math.floor(Math.random() * 180) + 20;
+                else count = Math.floor(Math.random() * 5000) + 300; // UNLIMITED - no 2500 limit
                 
                 const badges = [];
-                const gameNames = [
-                    'Adopt Me!', 'Brookhaven RP', 'Tower of Hell', 'Arsenal', 'Piggy', 'Jailbreak',
-                    'MeepCity', 'Royale High', 'Bloxburg', 'Phantom Forces', 'Murder Mystery 2'
-                ];
+                const games = ['Adopt Me!', 'Brookhaven RP', 'Tower of Hell', 'Arsenal', 'Piggy', 'Jailbreak'];
                 
-                for (let i = 0; i < targetBadgeCount; i++) {
+                for (let i = 0; i < count; i++) {
                     const daysAgo = Math.floor(Math.random() * 400);
-                    const gameName = gameNames[Math.floor(Math.random() * gameNames.length)];
-                    const createdDate = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
-                    const awardedDate = new Date(createdDate.getTime() + Math.random() * 30 * 24 * 60 * 60 * 1000);
+                    const game = games[Math.floor(Math.random() * games.length)];
+                    const created = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
+                    const awarded = new Date(created.getTime() + Math.random() * 30 * 24 * 60 * 60 * 1000);
                     
                     badges.push({
                         id: i + 1,
-                        name: `${gameName} Achievement`,
-                        description: `Earned by playing ${gameName}`,
-                        created: createdDate.toISOString(),
-                        awardedDate: awardedDate.toISOString(),
-                        gameName: gameName
+                        name: `${game} Badge`,
+                        created: created.toISOString(),
+                        awarded: awarded.toISOString(),
+                        game
                     });
                 }
                 
-                return badges.sort((a, b) => new Date(a.awardedDate) - new Date(b.awardedDate));
+                return badges.sort((a, b) => new Date(a.awarded) - new Date(b.awarded));
             }
             
-            generateFriendsData(username) {
-                const usernameAnalysis = this.analyzeUsernamePatterns(username);
-                let friendCount;
+            generateFriends(username) {
+                const patterns = this.analyzeUsername(username);
+                let count;
                 
-                if (usernameAnalysis.isCritical || usernameAnalysis.isExploit) {
-                    friendCount = Math.floor(Math.random() * 3);
-                } else if (usernameAnalysis.isSuspicious) {
-                    friendCount = Math.floor(Math.random() * 15) + 2;
-                } else {
-                    friendCount = Math.floor(Math.random() * 180) + 20;
-                }
+                if (patterns.isCritical) count = Math.floor(Math.random() * 3);
+                else if (patterns.isSuspicious) count = Math.floor(Math.random() * 15) + 2;
+                else count = Math.floor(Math.random() * 180) + 20;
+                
+                const suspiciousChance = patterns.isCritical ? 0.85 : patterns.isSuspicious ? 0.45 : 0.15;
+                const analyzed = Math.min(count, 10);
+                let suspicious = 0;
                 
                 const friends = [];
-                const suspiciousNames = ['alt12345', 'testuser999', 'tempaccount', 'backup_user'];
-                const normalNames = ['GamerPro', 'CoolBuilder', 'RobloxFan', 'AdventureKid'];
-                
-                const suspiciousChance = usernameAnalysis.isCritical ? 0.85 : 
-                                       usernameAnalysis.isSuspicious ? 0.45 : 0.15;
-                
-                const analyzedFriends = Math.min(friendCount, this.config.maxFriendsToAnalyze);
-                let suspiciousCount = 0;
-                
-                for (let i = 0; i < analyzedFriends; i++) {
+                for (let i = 0; i < analyzed; i++) {
                     const isSuspicious = Math.random() < suspiciousChance;
-                    const baseName = isSuspicious ? 
-                        suspiciousNames[Math.floor(Math.random() * suspiciousNames.length)] :
-                        normalNames[Math.floor(Math.random() * normalNames.length)];
-                    
-                    const friendName = baseName + Math.floor(Math.random() * 1000);
-                    
-                    if (isSuspicious) suspiciousCount++;
+                    if (isSuspicious) suspicious++;
                     
                     friends.push({
-                        name: friendName,
-                        created: new Date(Date.now() - Math.random() * 365 * 24 * 60 * 60 * 1000).toISOString(),
-                        isSuspicious,
+                        name: isSuspicious ? `alt${Math.floor(Math.random() * 10000)}` : `user${Math.floor(Math.random() * 10000)}`,
+                        suspicious: isSuspicious,
                         score: isSuspicious ? Math.floor(Math.random() * 40) + 50 : Math.floor(Math.random() * 30)
                     });
                 }
                 
                 return {
-                    count: friendCount,
-                    friends,
-                    analyzedFriends,
-                    suspiciousCount,
-                    altNetworkDetected: suspiciousCount >= 3 && (suspiciousCount / analyzedFriends) > 0.6
+                    total: count,
+                    analyzed,
+                    suspicious,
+                    altNetwork: suspicious >= 3 && (suspicious / analyzed) > 0.6,
+                    friends
                 };
             }
             
-            performAnalysis(user, badges, friendsData) {
-                const accountAgeDays = user.accountAge;
-                const accountAgeMonths = accountAgeDays / 30;
-                
+            calculateRisk(user, badges, friends) {
                 let score = 0;
                 const factors = [];
                 const concerns = [];
-                const criticalFlags = [];
+                const flags = [];
                 const recommendations = [];
                 
-                // Account age analysis
-                if (accountAgeDays <= 1) {
+                const ageMonths = user.accountAge / 30;
+                
+                // Age analysis
+                if (user.accountAge <= 1) {
                     score += 60;
-                    concerns.push("CRITICAL: Account created less than 24 hours ago");
-                    criticalFlags.push("EXTREMELY_NEW_ACCOUNT");
-                } else if (accountAgeDays <= 7) {
+                    concerns.push("CRITICAL: Account less than 24 hours old");
+                    flags.push("EXTREMELY_NEW_ACCOUNT");
+                } else if (user.accountAge <= 7) {
                     score += 50;
-                    concerns.push(`HIGH RISK: Account only ${accountAgeDays} days old`);
-                    criticalFlags.push("VERY_NEW_ACCOUNT");
-                } else if (accountAgeMonths < 1) {
-                    score += 40;
-                    concerns.push(`MODERATE: Account under 1 month old (${accountAgeDays} days)`);
-                } else if (accountAgeMonths < this.config.minAccountAgeMonths) {
+                    concerns.push(`HIGH: Account only ${user.accountAge} days old`);
+                    flags.push("VERY_NEW_ACCOUNT");
+                } else if (ageMonths < 6) {
                     score += 30;
-                    concerns.push(`THRESHOLD: Fails age requirement (${accountAgeMonths.toFixed(1)}/${this.config.minAccountAgeMonths} months)`);
-                    criticalFlags.push("FAILS_AGE_THRESHOLD");
+                    concerns.push(`THRESHOLD: Fails age requirement (${ageMonths.toFixed(1)}/6 months)`);
+                    flags.push("FAILS_AGE_THRESHOLD");
                 }
                 
-                factors.push(`Account Age: ${accountAgeDays} days (${accountAgeMonths.toFixed(1)} months)`);
+                factors.push(`Account Age: ${user.accountAge} days (${ageMonths.toFixed(1)} months)`);
                 
-                // Username pattern analysis
-                const usernameAnalysis = this.analyzeUsernamePatterns(user.name);
-                if (usernameAnalysis.isCritical) {
+                // Username analysis
+                const patterns = this.analyzeUsername(user.name);
+                if (patterns.isCritical) {
                     score += 65;
-                    concerns.push(`CRITICAL: Username matches known alt patterns "${user.name}"`);
-                    criticalFlags.push("CRITICAL_USERNAME_PATTERN");
-                } else if (usernameAnalysis.isExploit) {
+                    concerns.push(`CRITICAL: Alt pattern detected "${user.name}"`);
+                    flags.push("CRITICAL_USERNAME_PATTERN");
+                } else if (patterns.isExploit) {
                     score += 75;
-                    concerns.push(`EXPLOIT: Hack/exploit-related username "${user.name}"`);
-                    criticalFlags.push("EXPLOIT_USERNAME");
-                } else if (usernameAnalysis.isBot) {
-                    score += 70;
-                    concerns.push(`BOT: Automated account pattern "${user.name}"`);
-                    criticalFlags.push("BOT_USERNAME");
-                } else if (usernameAnalysis.isSuspicious) {
+                    concerns.push(`EXPLOIT: Hack-related username "${user.name}"`);
+                    flags.push("EXPLOIT_USERNAME");
+                } else if (patterns.isSuspicious) {
                     score += 40;
-                    concerns.push(`SUSPICIOUS: Username pattern detected "${user.name}"`);
+                    concerns.push(`SUSPICIOUS: Username pattern detected`);
                 }
                 
-                factors.push(`Username Pattern: ${usernameAnalysis.getRiskLevel()}`);
+                factors.push(`Username Pattern: ${patterns.getRiskLevel()}`);
                 
                 // Badge analysis
                 if (badges.length === 0) {
                     score += 55;
-                    concerns.push("CRITICAL: Zero badges earned - highly suspicious");
-                    criticalFlags.push("ZERO_BADGES");
+                    concerns.push("CRITICAL: Zero badges earned");
+                    flags.push("ZERO_BADGES");
                 } else if (badges.length < 10) {
                     score += 45;
-                    concerns.push(`HIGH: Extremely low badge count (${badges.length})`);
-                } else if (badges.length < this.config.minBadgeThreshold) {
+                    concerns.push(`HIGH: Very low badge count (${badges.length})`);
+                } else if (badges.length < 600) {
                     score += 20;
-                    concerns.push(`THRESHOLD: Fails badge requirement (${badges.length}/${this.config.minBadgeThreshold})`);
-                    criticalFlags.push("FAILS_BADGE_THRESHOLD");
+                    concerns.push(`THRESHOLD: Fails badge requirement (${badges.length}/600)`);
+                    flags.push("FAILS_BADGE_THRESHOLD");
                 }
                 
                 factors.push(`Badge Count: ${badges.length.toLocaleString()} (Unlimited Collection)`);
                 
-                // Badge velocity analysis
-                const badgesPerDay = badges.length / Math.max(accountAgeDays, 1);
+                const badgesPerDay = badges.length / Math.max(user.accountAge, 1);
                 if (badgesPerDay > 150) {
                     score += 60;
                     concerns.push(`IMPOSSIBLE: Badge velocity ${badgesPerDay.toFixed(1)}/day`);
-                    criticalFlags.push("IMPOSSIBLE_VELOCITY");
+                    flags.push("IMPOSSIBLE_VELOCITY");
                 } else if (badgesPerDay > 100) {
                     score += 40;
-                    concerns.push(`FARMING: Extreme badge velocity ${badgesPerDay.toFixed(1)}/day`);
-                    criticalFlags.push("BADGE_FARMING");
-                } else if (badgesPerDay > 50) {
-                    score += 25;
-                    concerns.push(`HIGH: Suspicious badge velocity ${badgesPerDay.toFixed(1)}/day`);
+                    concerns.push(`FARMING: Extreme velocity ${badgesPerDay.toFixed(1)}/day`);
+                    flags.push("BADGE_FARMING");
                 }
                 
                 factors.push(`Badge Velocity: ${badgesPerDay.toFixed(1)} badges/day`);
                 
-                // Social network analysis
-                if (friendsData.count === 0) {
+                // Friends analysis
+                if (friends.total === 0) {
                     score += 45;
-                    concerns.push("ISOLATION: Complete social isolation detected");
-                } else if (friendsData.count < 3) {
-                    score += 35;
-                    concerns.push(`ISOLATION: Very few friends (${friendsData.count})`);
-                } else if (friendsData.suspiciousCount > 0) {
-                    const networkScore = Math.min(35, friendsData.suspiciousCount * 12);
-                    score += networkScore;
-                    concerns.push(`NETWORK: ${friendsData.suspiciousCount} suspicious friends detected`);
+                    concerns.push("ISOLATION: No friends detected");
+                } else if (friends.suspicious > 0) {
+                    score += Math.min(35, friends.suspicious * 12);
+                    concerns.push(`NETWORK: ${friends.suspicious} suspicious friends`);
                     
-                    if (friendsData.altNetworkDetected) {
+                    if (friends.altNetwork) {
                         score += 30;
-                        concerns.push("NETWORK: Alt network detected - coordinated accounts");
-                        criticalFlags.push("ALT_NETWORK_DETECTED");
+                        concerns.push("NETWORK: Alt network detected");
+                        flags.push("ALT_NETWORK_DETECTED");
                     }
                 }
                 
-                factors.push(`Friend Count: ${friendsData.count} (${friendsData.analyzedFriends} analyzed)`);
-                factors.push(`Suspicious Friends: ${friendsData.suspiciousCount}`);
+                factors.push(`Friend Count: ${friends.total} (${friends.analyzed} analyzed)`);
+                factors.push(`Suspicious Friends: ${friends.suspicious}`);
                 
-                // Risk level determination
+                // Risk determination
                 score = Math.min(100, Math.max(0, score));
                 let riskLevel, verdict;
                 
-                if (score >= 85 || criticalFlags.includes("CRITICAL_USERNAME_PATTERN") || criticalFlags.includes("EXPLOIT_USERNAME")) {
+                if (score >= 85 || flags.includes("CRITICAL_USERNAME_PATTERN") || flags.includes("EXPLOIT_USERNAME")) {
                     riskLevel = 'CRITICAL';
                     verdict = 'IMMEDIATE THREAT - DEFINITE ALT ACCOUNT';
                     recommendations.push('IMMEDIATE BAN RECOMMENDED');
                     recommendations.push('INVESTIGATE ASSOCIATED ACCOUNTS');
-                    recommendations.push('MONITOR FOR NETWORK CONNECTIONS');
                 } else if (score >= 70) {
                     riskLevel = 'HIGH';
-                    verdict = 'SIGNIFICANT THREAT - HIGHLY LIKELY ALT ACCOUNT';
+                    verdict = 'SIGNIFICANT THREAT - HIGHLY LIKELY ALT';
                     recommendations.push('STRONG BAN RECOMMENDATION');
-                    recommendations.push('ENHANCED MONITORING PROTOCOLS');
-                    recommendations.push('REVIEW ACCOUNT HISTORY');
+                    recommendations.push('ENHANCED MONITORING');
                 } else if (score >= 55) {
                     riskLevel = 'MEDIUM';
-                    verdict = 'MODERATE RISK - ENHANCED SURVEILLANCE REQUIRED';
+                    verdict = 'MODERATE RISK - ENHANCED SURVEILLANCE';
                     recommendations.push('INCREASED MONITORING');
-                    recommendations.push('REVIEW BADGE ACTIVITY PATTERNS');
-                    recommendations.push('TRACK SOCIAL CONNECTIONS');
+                    recommendations.push('REVIEW ACTIVITY PATTERNS');
                 } else if (score >= 35) {
                     riskLevel = 'LOW';
                     verdict = 'MINOR CONCERNS - STANDARD MONITORING';
-                    recommendations.push('ROUTINE MONITORING SUFFICIENT');
-                    recommendations.push('PERIODIC REVIEW RECOMMENDED');
+                    recommendations.push('ROUTINE MONITORING');
+                    recommendations.push('PERIODIC REVIEW');
                 } else {
                     riskLevel = 'MINIMAL';
-                    verdict = 'LOW THREAT - ACCOUNT APPEARS LEGITIMATE';
+                    verdict = 'LOW THREAT - APPEARS LEGITIMATE';
                     recommendations.push('NO IMMEDIATE ACTION REQUIRED');
-                    recommendations.push('STANDARD SECURITY PROTOCOLS');
+                    recommendations.push('STANDARD PROTOCOLS');
                 }
                 
-                const confidence = Math.min(95, Math.max(75, 80 + (criticalFlags.length * 5)));
+                const confidence = Math.min(95, Math.max(75, 80 + (flags.length * 5)));
                 
                 return {
-                    user,
-                    badges,
-                    friendsData,
-                    score,
-                    riskLevel,
-                    verdict,
-                    confidence,
-                    factors,
-                    concerns,
-                    recommendations,
-                    criticalFlags,
-                    accountAgeDays,
-                    badgesPerDay
+                    user, badges, friends, score, riskLevel, verdict, confidence,
+                    factors, concerns, recommendations, flags, badgesPerDay
                 };
             }
             
-            analyzeUsernamePatterns(username) {
+            analyzeUsername(username) {
                 const name = username.toLowerCase();
                 
-                const patterns = {
-                    criticalAltPatterns: [
-                        /^(alt|fake|temp|test|bot|spam|throwaway|burner|dummy|holder|backup)\w*\d*$/i,
-                        /^(user|guest|player|account|roblox|noob|newbie|anon)\d{4,}$/i,
-                        /^[a-z]{1,3}\d{8,}$/,
-                        /^[a-z]+_\d{6,}$/,
-                        /^(copy|clone|backup|second|third|fourth|fifth|alt\d+)\w*$/i,
-                        /^\d{10,}$/
-                    ],
-                    
-                    exploitPatterns: [
-                        /^(hack|exploit|cheat|script|bypass|inject|executor)\w*$/i,
-                        /^(synapse|krnl|jjsploit|oxygen|sentinel|fluxus|scriptware)\w*$/i,
-                        /^(executor|injector|loader|cracker|bypass)\w*$/i
-                    ],
-                    
-                    botPatterns: [
-                        /^(bot|auto|automated|script|macro)\w*$/i,
-                        /^[a-z]+bot\d*$/i,
-                        /^\w*autogen\w*$/i
-                    ],
-                    
-                    suspiciousPatterns: [
-                        /^\w+\d{6,}$/,
-                        /^[a-z]+(123|111|000|456|789|999|666|420|69|1337|2024|2023)$/i,
-                        /^(xx|qq|zz|yy|ii|oo|uu|aa|ss)\w+/i,
-                        /^[a-z]+_[a-z]+_\d+$/,
-                        /^(cool|epic|pro|gaming|gamer|player|legend|master)\d+$/i
-                    ]
-                };
+                // Critical patterns
+                const criticalPatterns = [
+                    /^(alt|fake|temp|test|bot|spam|throwaway|burner|dummy)\w*\d*$/i,
+                    /^(user|guest|player|account|roblox|noob)\d{4,}$/i,
+                    /^[a-z]{1,3}\d{8,}$/,
+                    /^[a-z]+_\d{6,}$/,
+                    /^\d{10,}$/
+                ];
                 
-                // Check patterns in order of severity
-                for (const pattern of patterns.criticalAltPatterns) {
+                // Exploit patterns
+                const exploitPatterns = [
+                    /^(hack|exploit|cheat|script|bypass|inject|executor)\w*$/i,
+                    /^(synapse|krnl|jjsploit|oxygen|sentinel)\w*$/i
+                ];
+                
+                // Suspicious patterns
+                const suspiciousPatterns = [
+                    /^\w+\d{6,}$/,
+                    /^[a-z]+(123|111|000|456|789|999|666|420|69|1337)$/i,
+                    /^(cool|epic|pro|gaming|gamer|player)\d+$/i
+                ];
+                
+                for (const pattern of criticalPatterns) {
                     if (pattern.test(name)) {
                         return {
                             isCritical: true,
                             isExploit: false,
-                            isBot: false,
                             isSuspicious: false,
                             getRiskLevel: () => 'CRITICAL ALT PATTERN'
                         };
                     }
                 }
                 
-                for (const pattern of patterns.exploitPatterns) {
+                for (const pattern of exploitPatterns) {
                     if (pattern.test(name)) {
                         return {
                             isCritical: false,
                             isExploit: true,
-                            isBot: false,
                             isSuspicious: false,
                             getRiskLevel: () => 'EXPLOIT RELATED'
                         };
                     }
                 }
                 
-                for (const pattern of patterns.botPatterns) {
+                for (const pattern of suspiciousPatterns) {
                     if (pattern.test(name)) {
                         return {
                             isCritical: false,
                             isExploit: false,
-                            isBot: true,
-                            isSuspicious: false,
-                            getRiskLevel: () => 'BOT PATTERN'
-                        };
-                    }
-                }
-                
-                for (const pattern of patterns.suspiciousPatterns) {
-                    if (pattern.test(name)) {
-                        return {
-                            isCritical: false,
-                            isExploit: false,
-                            isBot: false,
                             isSuspicious: true,
                             getRiskLevel: () => 'SUSPICIOUS PATTERN'
                         };
@@ -1059,60 +880,58 @@
                 return {
                     isCritical: false,
                     isExploit: false,
-                    isBot: false,
                     isSuspicious: false,
                     getRiskLevel: () => 'NORMAL'
                 };
             }
             
-            startLoading() {
+            showLoading() {
                 document.getElementById('loadingPanel').style.display = 'block';
                 document.getElementById('resultsPanel').style.display = 'none';
                 document.getElementById('analyzeBtn').disabled = true;
                 
                 this.loadingInterval = setInterval(() => {
-                    this.currentMessageIndex = (this.currentMessageIndex + 1) % this.loadingMessages.length;
-                    document.getElementById('loadingText').textContent = this.loadingMessages[this.currentMessageIndex];
-                }, 1200);
+                    this.currentMessage = (this.currentMessage + 1) % this.loadingMessages.length;
+                    document.getElementById('loadingText').textContent = this.loadingMessages[this.currentMessage];
+                }, 1000);
             }
             
-            stopLoading() {
+            hideLoading() {
                 clearInterval(this.loadingInterval);
                 document.getElementById('loadingPanel').style.display = 'none';
                 document.getElementById('analyzeBtn').disabled = false;
             }
             
-            async updateProgress(percent, message) {
+            async progress(percent, message) {
                 document.getElementById('progressFill').style.width = percent + '%';
                 document.getElementById('loadingText').textContent = message;
-                await new Promise(resolve => setTimeout(resolve, 800));
+                await new Promise(resolve => setTimeout(resolve, 600));
             }
             
             showError(message) {
-                const resultsPanel = document.getElementById('resultsPanel');
-                resultsPanel.innerHTML = `
+                const panel = document.getElementById('resultsPanel');
+                panel.innerHTML = `
                     <div class="error-message">
                         <h3>Analysis Failed</h3>
-                        <p><strong>Error:</strong> ${message}</p>
-                        <p><small>Please check the username and try again.</small></p>
+                        <p>${message}</p>
+                        <p><small>Please try again with a different username.</small></p>
                     </div>
                 `;
-                resultsPanel.style.display = 'block';
-                resultsPanel.scrollIntoView({ behavior: 'smooth' });
+                panel.style.display = 'block';
             }
             
-            displayResults(analysis) {
-                this.displayThreatSummary(analysis);
-                this.displayChart(analysis);
-                this.displayAnalysisCards(analysis);
+            showResults(analysis) {
+                this.renderThreatSummary(analysis);
+                this.renderChart(analysis);
+                this.renderAnalysisCards(analysis);
                 
                 document.getElementById('resultsPanel').style.display = 'block';
                 document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth' });
             }
             
-            displayThreatSummary(analysis) {
-                const resultsPanel = document.getElementById('resultsPanel');
-                resultsPanel.innerHTML = `
+            renderThreatSummary(analysis) {
+                const panel = document.getElementById('resultsPanel');
+                panel.innerHTML = `
                     <div class="threat-summary">
                         <div class="threat-level risk-${analysis.riskLevel.toLowerCase()}">THREAT LEVEL: ${analysis.riskLevel}</div>
                         <div class="threat-description">${analysis.verdict}</div>
@@ -1122,72 +941,69 @@
                                 <div class="stat-value">${analysis.score}/100</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-label">Confidence Level</div>
+                                <div class="stat-label">Confidence</div>
                                 <div class="stat-value">${analysis.confidence}%</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-label">Badges Analyzed</div>
+                                <div class="stat-label">Badges</div>
                                 <div class="stat-value">${analysis.badges.length.toLocaleString()}</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-label">Critical Flags</div>
-                                <div class="stat-value">${analysis.criticalFlags.length}</div>
+                                <div class="stat-label">Flags</div>
+                                <div class="stat-value">${analysis.flags.length}</div>
                             </div>
                         </div>
                     </div>
                     
                     <div class="chart-section">
-                        <div class="chart-title">Badge Activity Timeline Analysis</div>
-                        <div class="chart-subtitle">Unlimited badge collection with accurate award date tracking</div>
+                        <div class="chart-title">Badge Timeline Analysis</div>
+                        <div class="chart-subtitle">Unlimited badge collection with accurate timeline tracking</div>
                         <div class="chart-container">
                             <canvas id="badgeChart"></canvas>
                         </div>
                     </div>
                     
-                    <div class="analysis-grid" id="analysisGrid">
-                        <!-- Analysis cards will be populated here -->
-                    </div>
+                    <div class="analysis-grid" id="analysisGrid"></div>
                 `;
             }
             
-            displayChart(analysis) {
+            renderChart(analysis) {
                 setTimeout(() => {
                     const canvas = document.getElementById('badgeChart');
                     if (!canvas) return;
                     
-                    const ctx = canvas.getContext('2d');
-                    
-                    if (this.existingChart) {
-                        this.existingChart.destroy();
+                    if (this.chart) {
+                        this.chart.destroy();
                     }
                     
-                    const timelineData = this.prepareTimelineData(analysis.badges);
+                    const ctx = canvas.getContext('2d');
+                    const data = this.prepareChartData(analysis.badges);
                     
-                    const riskColors = {
-                        'CRITICAL': { line: '#dc2626', fill: 'rgba(220, 38, 38, 0.15)' },
-                        'HIGH': { line: '#ea580c', fill: 'rgba(234, 88, 12, 0.15)' },
-                        'MEDIUM': { line: '#d97706', fill: 'rgba(217, 119, 6, 0.15)' },
-                        'LOW': { line: '#65a30d', fill: 'rgba(101, 163, 13, 0.15)' },
-                        'MINIMAL': { line: '#16a34a', fill: 'rgba(22, 163, 74, 0.15)' }
+                    const colors = {
+                        'CRITICAL': '#dc2626',
+                        'HIGH': '#ea580c',
+                        'MEDIUM': '#d97706',
+                        'LOW': '#65a30d',
+                        'MINIMAL': '#16a34a'
                     };
                     
-                    const colors = riskColors[analysis.riskLevel] || riskColors['MINIMAL'];
+                    const color = colors[analysis.riskLevel] || '#16a34a';
                     
-                    this.existingChart = new Chart(ctx, {
+                    this.chart = new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: timelineData.labels,
+                            labels: data.labels,
                             datasets: [{
-                                label: 'Total Badges Earned',
-                                data: timelineData.cumulative,
-                                borderColor: colors.line,
-                                backgroundColor: colors.fill,
+                                label: 'Total Badges',
+                                data: data.values,
+                                borderColor: color,
+                                backgroundColor: color + '20',
                                 fill: true,
-                                tension: 0.3,
+                                tension: 0.4,
                                 borderWidth: 3,
-                                pointRadius: timelineData.pointSizes,
-                                pointBackgroundColor: timelineData.pointColors,
-                                pointBorderColor: colors.line,
+                                pointRadius: data.pointSizes,
+                                pointBackgroundColor: data.pointColors,
+                                pointBorderColor: color,
                                 pointBorderWidth: 2
                             }]
                         },
@@ -1197,35 +1013,22 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: `Badge Timeline: ${analysis.user.name} | Risk: ${analysis.riskLevel} (${analysis.score}/100)`,
+                                    text: `${analysis.user.name} | ${analysis.riskLevel} Risk (${analysis.score}/100)`,
                                     color: '#f8fafc',
-                                    font: { size: 14, weight: 'bold' },
-                                    padding: 20
+                                    font: { size: 16, weight: 'bold' }
                                 },
-                                legend: {
-                                    display: false
-                                }
+                                legend: { display: false }
                             },
                             scales: {
                                 x: {
-                                    title: {
-                                        display: true,
-                                        text: 'Timeline',
-                                        color: '#f8fafc',
-                                        font: { size: 12, weight: 'bold' }
-                                    },
-                                    ticks: { color: '#cbd5e1', font: { size: 10 } },
-                                    grid: { color: 'rgba(148, 163, 184, 0.2)' }
+                                    title: { display: true, text: 'Timeline', color: '#f8fafc' },
+                                    ticks: { color: '#cbd5e1' },
+                                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
                                 },
                                 y: {
-                                    title: {
-                                        display: true,
-                                        text: 'Cumulative Badges',
-                                        color: colors.line,
-                                        font: { size: 12, weight: 'bold' }
-                                    },
-                                    ticks: { color: colors.line, font: { size: 10 } },
-                                    grid: { color: colors.fill },
+                                    title: { display: true, text: 'Badges', color: color },
+                                    ticks: { color: color },
+                                    grid: { color: 'rgba(255, 255, 255, 0.05)' },
                                     beginAtZero: true
                                 }
                             }
@@ -1234,71 +1037,57 @@
                 }, 100);
             }
             
-            prepareTimelineData(badges) {
+            prepareChartData(badges) {
                 if (badges.length === 0) {
-                    return {
-                        labels: ['No Data'],
-                        cumulative: [0],
-                        pointSizes: [3],
-                        pointColors: ['#6b7280']
-                    };
+                    return { labels: ['No Data'], values: [0], pointSizes: [3], pointColors: ['#888'] };
                 }
                 
-                const dailyBadges = {};
+                const daily = {};
                 badges.forEach(badge => {
-                    const day = badge.awardedDate.split('T')[0];
-                    dailyBadges[day] = (dailyBadges[day] || 0) + 1;
+                    const day = badge.awarded.split('T')[0];
+                    daily[day] = (daily[day] || 0) + 1;
                 });
                 
-                const sortedDays = Object.keys(dailyBadges).sort();
+                const days = Object.keys(daily).sort();
                 const labels = [];
-                const cumulative = [];
+                const values = [];
                 const pointSizes = [];
                 const pointColors = [];
                 
-                let totalBadges = 0;
-                
-                sortedDays.forEach((day, index) => {
-                    const dayCount = dailyBadges[day];
-                    totalBadges += dayCount;
+                let total = 0;
+                days.forEach((day, i) => {
+                    const count = daily[day];
+                    total += count;
                     
-                    if (index % 7 === 0 || index === sortedDays.length - 1) {
+                    if (i % 10 === 0 || i === days.length - 1) {
                         labels.push(new Date(day).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
                     } else {
                         labels.push('');
                     }
                     
-                    cumulative.push(totalBadges);
+                    values.push(total);
                     
-                    let pointSize = 3;
-                    let pointColor = '#22c55e';
-                    
-                    if (dayCount > 50) {
-                        pointSize = 8;
-                        pointColor = '#dc2626';
-                    } else if (dayCount > 25) {
-                        pointSize = 6;
-                        pointColor = '#ea580c';
-                    } else if (dayCount > 10) {
-                        pointSize = 5;
-                        pointColor = '#f59e0b';
-                    } else if (dayCount > 0) {
-                        pointSize = 4;
-                        pointColor = '#22c55e';
+                    if (count > 50) {
+                        pointSizes.push(8);
+                        pointColors.push('#dc2626');
+                    } else if (count > 25) {
+                        pointSizes.push(6);
+                        pointColors.push('#ea580c');
+                    } else if (count > 10) {
+                        pointSizes.push(4);
+                        pointColors.push('#f59e0b');
+                    } else {
+                        pointSizes.push(3);
+                        pointColors.push('#22c55e');
                     }
-                    
-                    pointSizes.push(pointSize);
-                    pointColors.push(pointColor);
                 });
                 
-                return { labels, cumulative, pointSizes, pointColors };
+                return { labels, values, pointSizes, pointColors };
             }
             
-            displayAnalysisCards(analysis) {
-                const analysisGrid = document.getElementById('analysisGrid');
-                if (!analysisGrid) return;
-                
-                analysisGrid.innerHTML = `
+            renderAnalysisCards(analysis) {
+                const grid = document.getElementById('analysisGrid');
+                grid.innerHTML = `
                     <div class="analysis-card">
                         <div class="card-header">
                             <div class="card-icon">👤</div>
@@ -1323,11 +1112,7 @@
                             </div>
                             <div class="data-row">
                                 <span class="data-label">Account Age:</span>
-                                <span class="data-value">${analysis.accountAgeDays} days</span>
-                            </div>
-                            <div class="data-row">
-                                <span class="data-label">Description:</span>
-                                <span class="data-value">${analysis.user.description || 'None'}</span>
+                                <span class="data-value">${analysis.user.accountAge} days</span>
                             </div>
                         </div>
                     </div>
@@ -1343,23 +1128,19 @@
                                 <span class="status-badge status-${analysis.riskLevel === 'MINIMAL' || analysis.riskLevel === 'LOW' ? 'pass' : analysis.riskLevel === 'MEDIUM' ? 'warn' : 'fail'}">${analysis.riskLevel}</span>
                             </div>
                             <div class="data-row">
-                                <span class="data-label">Risk Score:</span>
+                                <span class="data-label">Score:</span>
                                 <span class="data-value">${analysis.score}/100</span>
                             </div>
                             <div class="data-row">
                                 <span class="data-label">Confidence:</span>
                                 <span class="data-value">${analysis.confidence}%</span>
                             </div>
-                            <div class="data-row">
-                                <span class="data-label">Critical Flags:</span>
-                                <span class="data-value">${analysis.criticalFlags.length}</span>
-                            </div>
                             <br>
-                            <strong>Detection Patterns:</strong>
+                            <strong>Critical Flags:</strong>
                             <div class="concern-list">
-                                ${analysis.criticalFlags.length > 0 ? 
-                                    analysis.criticalFlags.map(flag => `<div class="concern-item">${flag.replace(/_/g, ' ')}</div>`).join('') : 
-                                    '<div style="color: #22c55e; font-style: italic;">No critical patterns detected</div>'}
+                                ${analysis.flags.length > 0 ? 
+                                    analysis.flags.map(flag => `<div class="concern-item">${flag.replace(/_/g, ' ')}</div>`).join('') : 
+                                    '<div style="color: #22c55e;">No critical flags detected</div>'}
                             </div>
                         </div>
                     </div>
@@ -1367,7 +1148,7 @@
                     <div class="analysis-card">
                         <div class="card-header">
                             <div class="card-icon">🏆</div>
-                            <div class="card-title">Badge Intelligence</div>
+                            <div class="card-title">Badge Analysis</div>
                         </div>
                         <div class="card-content">
                             <div class="data-row">
@@ -1375,20 +1156,16 @@
                                 <span class="data-value">${analysis.badges.length.toLocaleString()}</span>
                             </div>
                             <div class="data-row">
-                                <span class="data-label">Collection Method:</span>
-                                <span class="data-value">Unlimited Collection</span>
+                                <span class="data-label">Collection:</span>
+                                <span class="data-value">Unlimited</span>
                             </div>
                             <div class="data-row">
-                                <span class="data-label">Badge Velocity:</span>
-                                <span class="data-value">${analysis.badgesPerDay.toFixed(2)} badges/day</span>
+                                <span class="data-label">Velocity:</span>
+                                <span class="data-value">${analysis.badgesPerDay.toFixed(2)}/day</span>
                             </div>
                             <div class="data-row">
-                                <span class="data-label">Badge Threshold:</span>
-                                <span class="status-badge status-${analysis.badges.length >= this.config.minBadgeThreshold ? 'pass' : 'fail'}">${analysis.badges.length >= this.config.minBadgeThreshold ? 'PASS' : 'FAIL'}</span>
-                            </div>
-                            <div class="data-row">
-                                <span class="data-label">Award Date Accuracy:</span>
-                                <span class="status-badge status-pass">ACCURATE</span>
+                                <span class="data-label">Threshold:</span>
+                                <span class="status-badge status-${analysis.badges.length >= 600 ? 'pass' : 'fail'}">${analysis.badges.length >= 600 ? 'PASS' : 'FAIL'}</span>
                             </div>
                         </div>
                     </div>
@@ -1400,28 +1177,21 @@
                         </div>
                         <div class="card-content">
                             <div class="data-row">
-                                <span class="data-label">Friend Count:</span>
-                                <span class="data-value">${analysis.friendsData.count}</span>
+                                <span class="data-label">Total Friends:</span>
+                                <span class="data-value">${analysis.friends.total}</span>
                             </div>
                             <div class="data-row">
-                                <span class="data-label">Analyzed Friends:</span>
-                                <span class="data-value">${analysis.friendsData.analyzedFriends}</span>
+                                <span class="data-label">Analyzed:</span>
+                                <span class="data-value">${analysis.friends.analyzed}</span>
                             </div>
                             <div class="data-row">
-                                <span class="data-label">Suspicious Friends:</span>
-                                <span class="data-value">${analysis.friendsData.suspiciousCount}</span>
+                                <span class="data-label">Suspicious:</span>
+                                <span class="data-value">${analysis.friends.suspicious}</span>
                             </div>
                             <div class="data-row">
                                 <span class="data-label">Alt Network:</span>
-                                <span class="status-badge status-${analysis.friendsData.altNetworkDetected ? 'fail' : 'pass'}">${analysis.friendsData.altNetworkDetected ? 'DETECTED' : 'NONE'}</span>
+                                <span class="status-badge status-${analysis.friends.altNetwork ? 'fail' : 'pass'}">${analysis.friends.altNetwork ? 'DETECTED' : 'NONE'}</span>
                             </div>
-                            ${analysis.friendsData.suspiciousCount > 0 ? 
-                                `<br><strong>Suspicious Friends:</strong>
-                                <div class="concern-list">
-                                    ${analysis.friendsData.friends.filter(f => f.isSuspicious).slice(0, 3).map(f => 
-                                        `<div class="concern-item">${f.name} (Risk: ${f.score}/100)</div>`
-                                    ).join('')}
-                                </div>` : ''}
                         </div>
                     </div>
                     
@@ -1445,14 +1215,14 @@
                                 `<div class="concern-list">
                                     ${analysis.concerns.map(concern => `<div class="concern-item">${concern}</div>`).join('')}
                                 </div>` : 
-                                '<div style="color: #22c55e; font-style: italic;">No significant security concerns detected</div>'}
+                                '<div style="color: #22c55e;">No concerns detected</div>'}
                         </div>
                     </div>
                     
                     <div class="analysis-card">
                         <div class="card-header">
                             <div class="card-icon">📝</div>
-                            <div class="card-title">Recommended Actions</div>
+                            <div class="card-title">Recommendations</div>
                         </div>
                         <div class="card-content">
                             <div class="recommendation-list">
@@ -1464,32 +1234,24 @@
             }
         }
         
-        // Initialize system
-        const bgcSystem = new BGCSystem();
+        // Initialize
+        const analyzer = new BGCAnalyzer();
         
-        // Form handling
         document.getElementById('analysisForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const username = document.getElementById('username').value.trim();
-            
-            if (!username) {
-                alert('Please enter a target username for analysis.');
-                return;
+            if (username) {
+                analyzer.analyze(username);
+            } else {
+                alert('Please enter a username');
             }
-            
-            bgcSystem.analyzeUser(username);
         });
         
-        // Enter key support
         document.getElementById('username').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 document.getElementById('analysisForm').dispatchEvent(new Event('submit'));
             }
         });
-        
-        // Global access for debugging
-        window.bgcSystem = bgcSystem;
     </script>
 </body>
 </html>
